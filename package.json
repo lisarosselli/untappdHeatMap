@@ -1,0 +1,28 @@
+{
+  "name": "untappdHeatMap",
+  "version": "0.0.1",
+  "description": "A checkin and venue heatmap using Untappd API",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lisarosselli/untappdHeatMap.git"
+  },
+  "keywords": [
+    "beer"
+  ],
+  "author": "L.Rosselli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lisarosselli/untappdHeatMap/issues"
+  },
+  "homepage": "https://github.com/lisarosselli/untappdHeatMap",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-csslint": "^0.4.0",
+    "grunt-contrib-jshint": "^0.11.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
