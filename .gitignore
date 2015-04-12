@@ -1,0 +1,7 @@
+#ignoring some files
+
+#ignore the file with all my client secrets
+js/untappd.js
+
+#ignore the node_modules folder because npm takes care of that
+node_modules/
