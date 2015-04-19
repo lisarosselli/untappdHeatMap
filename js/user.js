@@ -1,14 +1,16 @@
 /*
- * user.js
+ * User
  *
- *
+ * @author L.Rosselli
  */
 
 function User() {
-	// geolocate user via browser
-	// save location here? and to local storage?
+	var location = {
+		lat: null,
+		lng: null
+	}
 	
 	return {
-		
+		location: location
 	}
-};
+}

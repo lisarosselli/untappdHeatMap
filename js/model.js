@@ -7,6 +7,7 @@
 
 function Model() {
 	var _untappedApi;
+	var _user = new User();
 	
 	var setUntappdApi = function(value) {
 		if (!_untappedApi) {
@@ -15,6 +16,7 @@ function Model() {
 	}
 	
 	return {
-		setUntappdApi: setUntappdApi
+		setUntappdApi: setUntappdApi,
+		user: _user
 	}
 }

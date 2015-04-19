@@ -7,22 +7,26 @@
  */
 
 var app = {
-	controller: null
+	controller: null,
+	model: null,
+	view: null
 };
 
 window.onload = function() {
 	if (Model && View && Controller) {
 		console.log('commence');
 		
-		var controller = new Controller();
-		controller.components.model = new Model();
+		app.controller = new Controller();
+		app.model = new Model();
+		app.view = new View();
 		
 		// Explicitely creating  UntappdApi object and setting 
 		// directly to model. untappd.js is hidden from github
 		// due to containing clientId, clientSecret, and accessToken.
-		controller.components.model.setUntappdApi(new UntappdApi());
+		app.model.setUntappdApi(new UntappdApi());
 		
-		app.controller = controller;
+		//var map = new google.maps.Map(document.getElementById('map-canvas'), {zoom:15});
 		
+		app.controller.acquireLocation();
 	}
 };

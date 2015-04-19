@@ -4,17 +4,34 @@
 		<meta charset='utf-8'>
 		<title>untappdHeatMap</title>
 		<link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css'>
+		<link rel='stylesheet' href='css/styles.css'>
 	</head>
 	<body>
-		<h1>beer map test te</h1>
-		<div id='container'>
+		<div id='mainContainer'>
+			<div id='map-canvas'></div>
 		</div>
 		<script type='text/javascript' src='bower_components/jquery/dist/jquery.min.js'></script>
+		<script type='text/javascript' src='js/googlemapview.js'></script>
 		<script type='text/javascript' src='js/untappd.js'></script>
+		<script type='text/javascript' src='js/geolocation.js'></script>
 		<script type='text/javascript' src='js/controller.js'></script>
 		<script type='text/javascript' src='js/model.js'></script>
 		<script type='text/javascript' src='js/view.js'></script>
 		<script type='text/javascript' src='js/user.js'></script>
 		<script type='text/javascript' src='js/main.js'></script>
+		<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>//-->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgRbfbZzgWuedjxAAM74oXSyxlw2vximE"></script>
+		<script type="text/javascript">
+		      function initialize() {
+						console.log('map initialize');
+		        var mapOptions = {
+		          center: { lat: -34.397, lng: 150.644},
+		          zoom: 8
+		        };
+		        var map = new google.maps.Map(document.getElementById('map-canvas'),
+		            mapOptions);
+		      }
+		      google.maps.event.addDomListener(window, 'load', initialize);
+		    </script>
 	</body>
 </html>
