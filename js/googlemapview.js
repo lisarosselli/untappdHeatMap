@@ -9,21 +9,20 @@ function GoogleMapsView() {
 	console.log('GoogleMapsView');
 	
 	var _map;
-	var _mapElement;
 
 	var init = function() {
-		if (!_mapElement) {
-			_mapElement = document.createElement('div');
-			_mapElement.setAttribute('id', 'map-canvas');
-			_map = new google.maps.Map(_mapElement, {zoom:15});
+		if (!_map) {
+			var mapOptions = { zoom: 16 };
+			_map = new google.maps.Map(app.model.mapCanvasElement, mapOptions);
 			console.log(_map);
 		}
-		return _mapElement;
+		return _map;
 	}
-
 	
 	return {
 		init: init,
-		map: _map
+		get map() {
+			return _map;
+		}
 	}
 }

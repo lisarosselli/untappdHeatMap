@@ -6,13 +6,13 @@
  */
 
 function Controller() {
-
+	
+	
 	/*
 	 * acquireLocation
 	 */
 	var acquireLocation = function() {
-		// cue the map
-		app.view.initMap();
+		app.view.init();
 		
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
@@ -22,14 +22,15 @@ function Controller() {
 					// store the values to the model					
 					app.model.user.location.lat = position.coords.latitude;
 					app.model.user.location.lng = position.coords.longitude;
-
 					
-		      //var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-																					 
-					//app.view.googleMapsView.map.setCenter(pos);														
+					// set the map to center on location
+					app.view.googleMapsView.map.setCenter({ lat: app.model.user.location.lat, lng: app.model.user.location.lng});	
+					app.model.geoSuccess = true;											
 				}, 
 				function(error) {
 					console.log(error);
+					alert(error.message + '\nThe point of this app is totally moot if we cannot locate you.');
+					app.model.geoSuccess = false;	
 					return error;
 				}, 
 				{
@@ -38,7 +39,8 @@ function Controller() {
 					maximumAge: 0
 				});
 		} else {
-			console.log('no support for geolocation');
+			console.log('No browser support for geolocation.');
+			app.model.geoSuccess = false;	
 		}
 	}
 	

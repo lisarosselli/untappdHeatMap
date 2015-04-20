@@ -24,9 +24,7 @@ window.onload = function() {
 		// directly to model. untappd.js is hidden from github
 		// due to containing clientId, clientSecret, and accessToken.
 		app.model.setUntappdApi(new UntappdApi());
-		
-		//var map = new google.maps.Map(document.getElementById('map-canvas'), {zoom:15});
-		
+	
 		app.controller.acquireLocation();
 	}
 };

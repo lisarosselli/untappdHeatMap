@@ -1,0 +1,13 @@
+#mainContainer {
+	display: block;
+	position: absolute;
+	background-color: #ccc;
+	width: 100%;
+	height: 100%;
+}
+
+#map-canvas {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
