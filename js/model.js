@@ -9,6 +9,7 @@ function Model() {
 	var _untappedApi;
 	var _user = new User();
 	var _geoSuccess = false;
+	var _pubsResponse;
 	
 	var setUntappdApi = function(value) {
 		if (!_untappedApi) {
@@ -16,8 +17,18 @@ function Model() {
 		}
 	}
 	
+	/*
+	 	local pub response
+		var checkins = app.model.pubsResponse.response.checkins; (25)
+	
+	*/
+	
+	
 	return {
 		setUntappdApi: setUntappdApi,
+		get untappdApi() {
+			return _untappdApi;
+		},
 		user: _user,
 		get mapCanvasElement() {
 			return document.getElementById('map-canvas');
@@ -32,6 +43,12 @@ function Model() {
 			if (typeof value == 'boolean') {
 				_geoSuccess = value;
 			}
+		},
+		get pubsResponse() {
+			return _pubsResponse;
+		},
+		set pubsResponse(value) {
+			_pubsResponse = value;
 		}
 	}
 }

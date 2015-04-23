@@ -27,7 +27,7 @@ function Controller() {
 					app.view.googleMapsView.map.setCenter({ lat: app.model.user.location.lat, lng: app.model.user.location.lng});	
 					app.model.geoSuccess = true;			
 					
-					app.view.googleMapsView.markUserLocation(app.model.user.getGoogleLatLng(), 'I am here.');
+					displayUserMarker();
 				}, 
 				function(error) {
 					console.log(error);
@@ -47,10 +47,27 @@ function Controller() {
 		}
 	}
 	
+	var displayUserMarker = function() {
+		app.view.googleMapsView.markUserLocation(app.model.user.getGoogleLatLng(), 'I am here.');
+	}
 	
+	var getLocalPubData = function() {
+		//var api = new UntappdApi();
+		//var dataUri = api.getPubsUri(app.model.user.location.lat, app.model.user.location.lng);
+		//console.log(dataUri);
+		$.ajax({
+			url: 'https://api.untappd.com/v4/thepub/local?access_token=A3DF816D42AA28B509413D4903139E8650A2B5C4&lat=41.878114&lng=-87.629798'
+		})
+			.done(function(data) {
+				app.model.pubsResponse = data;
+				console.log("ajax successful");
+			});
+	}
 
 	return {
-		acquireLocation: acquireLocation
+		acquireLocation: acquireLocation,
+		displayUserMarker: displayUserMarker,
+		getLocalPubData: getLocalPubData
 	}
 	
 }
