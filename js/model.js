@@ -20,6 +20,13 @@ function Model() {
 	/*
 	 	local pub response
 		var checkins = app.model.pubsResponse.response.checkins; (25)
+		checkins.items[n].
+					beer
+					brewery
+					checkin_comment
+					created_at
+					user
+					venue
 	
 	*/
 	

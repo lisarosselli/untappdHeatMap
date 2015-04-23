@@ -53,6 +53,7 @@ function Controller() {
 	
 	var getLocalPubData = function() {
 		//var api = new UntappdApi();
+		// app.model.untappdApi.getPubsUri
 		//var dataUri = api.getPubsUri(app.model.user.location.lat, app.model.user.location.lng);
 		//console.log(dataUri);
 		$.ajax({
