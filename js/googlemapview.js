@@ -28,20 +28,22 @@ function GoogleMapsView() {
 	 */
 	var markUserLocation = function(positionParam, titleParam) {
 		if (_map && positionParam && titleParam) {
+			var infoWindow;
+			var marker;
 			
-			var shape = { 
-					coord: [0,0,150,75],
-					type: 'rect'
-			};
-			
-			var marker = new google.maps.Marker({
+			marker = new google.maps.Marker({
 				animation: google.maps.Animation.DROP,
 				position: positionParam,
 				map: _map,
-				shape: shape,
 				title: titleParam
 			});
+			
+			infoWindow = new google.maps.InfoWindow();
+			infoWindow.setContent('Here for the beer.');
+			infoWindow.open(_map, marker);
+			
 			_markers.push(marker);
+			
 		} else {
 			throw(new Error('Missing a parameter.'));
 		}
