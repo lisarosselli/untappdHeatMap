@@ -5,12 +5,19 @@
  */
 
 function User() {
-	var location = {
+	var _location = {
 		lat: null,
 		lng: null
 	}
 	
+	var getGoogleLatLng = function() {
+		if (google.maps) {
+			return new google.maps.LatLng(_location.lat, _location.lng);
+		}
+	}
+	
 	return {
-		location: location
+		location: _location,
+		getGoogleLatLng: getGoogleLatLng
 	}
 }

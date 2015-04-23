@@ -25,7 +25,9 @@ function Controller() {
 					
 					// set the map to center on location
 					app.view.googleMapsView.map.setCenter({ lat: app.model.user.location.lat, lng: app.model.user.location.lng});	
-					app.model.geoSuccess = true;											
+					app.model.geoSuccess = true;			
+					
+					app.view.googleMapsView.markUserLocation(app.model.user.getGoogleLatLng(), 'I am here.');
 				}, 
 				function(error) {
 					console.log(error);
@@ -40,9 +42,11 @@ function Controller() {
 				});
 		} else {
 			console.log('No browser support for geolocation.');
+			alert('No browser support for geolocation.');
 			app.model.geoSuccess = false;	
 		}
 	}
+	
 	
 
 	return {
