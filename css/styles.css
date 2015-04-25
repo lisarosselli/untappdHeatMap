@@ -11,3 +11,23 @@
 	margin: 0px;
 	padding: 0px;
 }
+
+#titleBar {
+	width: 100%;
+}
+
+nav {
+	background-color: yellow;
+	width: auto;
+}
+
+nav ul {
+	/*font-size: 1.5em;*/
+}
+
+nav ul li {
+	display: inline;
+	list-style-type: none;
+	cursor: pointer;
+	margin-right: 15px;
+}
