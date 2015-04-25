@@ -6,25 +6,41 @@
  */
 
 function MainUIView(value) {
-	console.log('MainUIView');
-	
 	var _mainContainer = value;
 	var _titleBar;
+	var _locateMeBtn;
+	var _showActivityBtn;
 	
-	var showTitleBar = function() {
-		if (!_titleBar) {
-			_titleBar = document.createElement('div');
-			_titleBar.setAttribute('id', 'titleBar');
-			
-			var header = document.createElement('h3');
-			header.textContent = 'UntappdBeerApp';
-			
-			_titleBar.appendChild(header);
-			_mainContainer.insertBefore(_titleBar, app.model.mapCanvasElement);
-		}
+	(function init() {
+		console.log('MainUIView constructor');
+		
+		_titleBar = document.getElementById('titleBar');
+		_locateMeBtn = document.getElementById('locateMe');
+		_showActivityBtn = document.getElementById('showActivity');
+		
+		$(_showActivityBtn).click(function() {
+			app.controller.getLocalPubData();
+			//showActivityLoading();
+		});
+		
+	})();
+	
+	var showActivityLoading = function() {
+		console.log('showActivityLoading');
+		$(_showActivityBtn).removeClass('fa fa-beer').addClass('fa fa-spinner fa-pulse');
 	}
 	
+	var showActivityLoaded = function() {
+		console.log('showActivityLoaded');
+		$(_showActivityBtn).removeClass('fa fa-spinner fa-pulse').addClass('fa fa-beer');
+	}
+
+	
 	return {
-		showTitleBar: showTitleBar
+		get titleBar() {
+			return _titleBar;
+		},
+		showActivityLoading: showActivityLoading,
+		showActivityLoaded: showActivityLoaded
 	}
 }

@@ -11,12 +11,9 @@ function View() {
 	var _mainUIView = new MainUIView(_mainContainer);
 	
 
+	
 	var init = function() {
-		//_mainUIView.showTitleBar();
 		
-		if (_googleMapsView) {
-			_googleMapsView.init();
-		}
 	}
 	
 	

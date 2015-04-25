@@ -15,7 +15,7 @@ function GoogleMapsView() {
 		if (!_map) {
 			var mapOptions = { zoom: 16 };
 			_map = new google.maps.Map(app.model.mapCanvasElement, mapOptions);
-			console.log(_map);
+			console.log('GoogleMapsView init '+_map);
 		}
 		return _map;
 	}
@@ -48,29 +48,6 @@ function GoogleMapsView() {
 			throw(new Error('Missing a parameter.'));
 		}
 	}
-	
-/*
-	var marker = new google.maps.Marker({
-	    position: myLatlng,
-	    map: map,
-	    title:"Hello World!"
-	});
-
-var shape = { coord: [1, 1, 1, 23, 25, 23, 25 , 1],
-		type: 'poly'
-};
-
-// propagate Google Maps markers and info windows
-this.origMarker = new google.maps.Marker({
-	position: origLatLng,
-	map: map,
-	icon: img,
-	shape: shape,
-	animation: google.maps.Animation.DROP,
-	title: origStop.stop
-})
-	
-*/
 	
 	return {
 		init: init,

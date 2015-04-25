@@ -12,7 +12,7 @@ function Controller() {
 	 * acquireLocation
 	 */
 	var acquireLocation = function() {
-		app.view.init();
+		app.view.googleMapsView.init();
 		
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
@@ -31,7 +31,7 @@ function Controller() {
 				}, 
 				function(error) {
 					console.log(error);
-					alert(error.message + '\nThe point of this app is totally moot if we cannot locate you.');
+					//alert(error.message + '\nThe point of this app is totally moot if we cannot locate you.');
 					app.model.geoSuccess = false;	
 					return error;
 				}, 
@@ -47,20 +47,36 @@ function Controller() {
 		}
 	}
 	
+	/*
+	 * displayUserMarker
+	 */
 	var displayUserMarker = function() {
 		app.view.googleMapsView.markUserLocation(app.model.user.getGoogleLatLng(), 'I am here.');
 	}
 	
+	/*
+	 * getLocalPubData
+	 */
 	var getLocalPubData = function() {
+		var ajaxUrl;
+		
+		if (!app.model.user.location.lat || !app.model.user.location.lng) {
+			ajaxUrl = 'https://api.untappd.com/v4/thepub/local?access_token=A3DF816D42AA28B509413D4903139E8650A2B5C4&lat=41.8854785&lng=-87.6402523';
+		} else {
+			ajaxUrl = app.model.untappdApi.getPubsUri(app.model.user.location.lat, app.model.user.location.lng);
+		}
+		
 		$.ajax({
-			url: app.model.untappdApi.getPubsUri(app.model.user.location.lat, app.model.user.location.lng),
+			url: ajaxUrl,
 		})
 			.done(function(data) {
 				app.model.pubsResponse = data;
 				console.log("ajax successful");
+				app.view.mainUIView.showActivityLoaded();
 			})
 			.fail(function(data) {
 				console.log("ajax failed");
+				app.view.mainUIView.showActivityLoaded();
 			});
 	}
 

@@ -27,6 +27,23 @@ function Model() {
 					created_at
 					user
 					venue
+		
+		app.model.pubsResponse.response.checkins.items[n].venue = {}
+		app.model.pubsResponse.response.checkins.items[0].venue.location.lat
+		app.model.pubsResponse.response.checkins.items[0].venue.location.lng
+		app.model.pubsResponse.response.checkins.items[0].venue.location.venue_address
+		app.model.pubsResponse.response.checkins.items[0].venue.location.venue_city
+		app.model.pubsResponse.response.checkins.items[0].venue.venue_name
+	
+		app.model.pubsResponse.response.checkins.items[0].beer = {}
+		app.model.pubsResponse.response.checkins.items[0].beer.beer_name
+		app.model.pubsResponse.response.checkins.items[0].beer.beer_abv
+		app.model.pubsResponse.response.checkins.items[0].beer.beer_ibu
+		app.model.pubsResponse.response.checkins.items[0].beer.beer_style
+	
+		
+		app.model.pubsResponse.response.checkins.items[0].brewery.brewery_name
+		app.model.pubsResponse.response.checkins.items[0].brewery.brewery_label (jpeg)
 	
 	*/
 	
