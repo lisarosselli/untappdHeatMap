@@ -6,7 +6,7 @@
  */
 
 function Model() {
-	var _untappedApi;
+	var _untappdApi;
 	var _user = new User();
 	var _geoSuccess = false;
 	var _pubsResponse;
@@ -32,9 +32,11 @@ function Model() {
 	
 	
 	return {
-		setUntappdApi: setUntappdApi,
 		get untappdApi() {
 			return _untappdApi;
+		},
+		set untappdApi(value) {
+			_untappdApi = value;
 		},
 		user: _user,
 		get mapCanvasElement() {

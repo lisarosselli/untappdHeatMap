@@ -12,7 +12,7 @@ function View() {
 	
 
 	var init = function() {
-		_mainUIView.showTitleBar();
+		//_mainUIView.showTitleBar();
 		
 		if (_googleMapsView) {
 			_googleMapsView.init();
