@@ -45,6 +45,17 @@ function Model() {
 		app.model.pubsResponse.response.checkins.items[0].brewery.brewery_name
 		app.model.pubsResponse.response.checkins.items[0].brewery.brewery_label (jpeg)
 	
+		map.data.addGeoJson(results) results are JSON
+		the map.data object is a collection of Features (google.maps.Data.Feature)
+	
+		var a = new google.maps.Data.Feature( options...);
+		{
+			geometry: sdfas,
+		 	id: you set this,
+			properties: {
+				}
+		}
+	
 	*/
 	
 	

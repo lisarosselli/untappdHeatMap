@@ -40,10 +40,10 @@ function GoogleMapsView() {
 			
 			infoWindow = new google.maps.InfoWindow();
 			infoWindow.setContent('Here for the beer.');
+			//infoWindow.setContent('<h1>Hello World</h1><h6>something else</h6><img src="https://d1c8v1qci5en44.cloudfront.net/site/brewery_logos/brewery-129756_5cf76.jpeg">');
 			infoWindow.open(_map, marker);
 			
 			_markers.push(marker);
-			
 		} else {
 			throw(new Error('Missing a parameter.'));
 		}
