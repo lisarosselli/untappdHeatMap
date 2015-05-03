@@ -2,7 +2,8 @@
 	display: block;
 	position: absolute;
 	background-color: #ccc;
-	width: 100%;
+	left: -300px;
+	width: calc(100% + 300px);
 	height: 100%;
 }
 
@@ -10,14 +11,55 @@
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
+	z-index: 0;
 }
 
 #titleBar {
-	width: 100%;
+	position: absolute;
+	left: 300px;
+	top: 0;
+	width: auto;
+	z-index: 11;
+}
+
+#titleBar button {
+	font-size: 2em;
 }
 
 nav {
 	background-color: #FFCC00;
 	padding: 0.5em;
 	width: auto;
+}
+
+#menu {
+	position: absolute;
+	background-color: yellow;
+	height: 100%;
+	width: 300px;
+	top: 0;
+	left: 0px;
+	z-index: 10;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0;
+}
+
+#menu ul li {
+	list-style-type: none;
+	padding: 0.8em;
+	margin: 0;
+	font-size: 1.5em;
+	border-bottom: 1px solid black;
+	cursor: pointer;
+}
+
+#menuCloseBtn {
+	text-align: right;
+}
+
+#menu ul li:hover {
+	background-color: red;
 }
