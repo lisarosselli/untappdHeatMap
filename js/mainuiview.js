@@ -18,13 +18,22 @@ function MainUIView(value) {
 		_locateMeBtn = document.getElementById('locateMe');
 		_showActivityBtn = document.getElementById('showActivity');
 		
+		$(_locateMeBtn).click(function() {
+			console.log('locate button clicked');
+		});
+
 		$(_showActivityBtn).click(function() {
+			console.log('activity button clicked');
 			app.controller.getLocalPubData();
 			//showActivityLoading();
 		});
+
 		
 	})();
+
+	// would like to show some type of spinner/loader
 	
+	/*
 	var showActivityLoading = function() {
 		console.log('showActivityLoading');
 		$(_showActivityBtn).removeClass('fa fa-beer').addClass('fa fa-spinner fa-pulse');
@@ -34,13 +43,12 @@ function MainUIView(value) {
 		console.log('showActivityLoaded');
 		$(_showActivityBtn).removeClass('fa fa-spinner fa-pulse').addClass('fa fa-beer');
 	}
+	*/
 
 	
 	return {
 		get titleBar() {
 			return _titleBar;
-		},
-		showActivityLoading: showActivityLoading,
-		showActivityLoaded: showActivityLoaded
+		}
 	}
 }

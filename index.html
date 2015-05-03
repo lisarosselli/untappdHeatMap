@@ -3,6 +3,7 @@
 	<head>
 		<meta charset='utf-8'>
 		<title>untappdHeatMap</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css'>
 		<link rel='stylesheet' href='bower_components/fontawesome/css/font-awesome.min.css'>
 		<link rel='stylesheet' href='css/styles.css'>
@@ -11,16 +12,15 @@
 		<div id='mainContainer'>
 			<div id='titleBar'>
 				<nav id='menu'>
-					<ul>
-						<li><i id='locateMe' class="fa fa-map-marker"></i>Locate Me</li>
-						<li><i id='showActivity' class="fa fa-beer"></i>Get Activity</li>
-					</ul>
+					<h4>Untappd CheckIn HeatMap</h4>
+					<button id='locateMe' class="btn btn-default">Locate Me</button>
+					<button id='showActivity' class="btn btn-default">Show Beer Activity</button>
 				</nav>
 			</div>
 			<div id='map-canvas'></div>
 		</div>
 		<script type='text/javascript' src='bower_components/jquery/dist/jquery.min.js'></script>
-		<script type='text/javascript' src='js/beermarker.js'></script>
+		<script type='text/javascript' src='js/mapmarker.js'></script>
 		<script type='text/javascript' src='js/googlemapview.js'></script>
 		<script type='text/javascript' src='js/mainuiview.js'></script>
 		<script type='text/javascript' src='js/untappd.js'></script>

@@ -61,8 +61,10 @@ function Controller() {
 		var ajaxUrl;
 		
 		if (!app.model.user.location.lat || !app.model.user.location.lng) {
+			console.warn('getLocalPubData > using Chicago Loop default location');
 			ajaxUrl = 'https://api.untappd.com/v4/thepub/local?access_token=A3DF816D42AA28B509413D4903139E8650A2B5C4&lat=41.8854785&lng=-87.6402523';
 		} else {
+			console.debug('getLocalPubData > using Google generated lat/lng!');
 			ajaxUrl = app.model.untappdApi.getPubsUri(app.model.user.location.lat, app.model.user.location.lng);
 		}
 		
@@ -72,11 +74,11 @@ function Controller() {
 			.done(function(data) {
 				app.model.pubsResponse = data;
 				console.log("ajax successful");
-				app.view.mainUIView.showActivityLoaded();
+				//app.view.mainUIView.showActivityLoaded();
 			})
 			.fail(function(data) {
 				console.log("ajax failed");
-				app.view.mainUIView.showActivityLoaded();
+				//app.view.mainUIView.showActivityLoaded();
 			});
 	}
 
