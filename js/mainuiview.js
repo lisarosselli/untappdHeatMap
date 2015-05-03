@@ -8,6 +8,8 @@
 function MainUIView(value) {
 	var _mainContainer = value;
 	var _titleBar;
+	var _menu;
+	var _menuCloseBtn;
 	var _locateMeBtn;
 	var _showActivityBtn;
 	
@@ -15,35 +17,59 @@ function MainUIView(value) {
 		console.log('MainUIView constructor');
 		
 		_titleBar = document.getElementById('titleBar');
-		_locateMeBtn = document.getElementById('locateMe');
-		_showActivityBtn = document.getElementById('showActivity');
+		_menu = document.getElementById('menu');
+		_menuOpenBtn = document.getElementById('menuOpenBtn');
+		_menuCloseBtn = document.getElementById('menuCloseBtn');
+		_locateMeBtn = document.getElementById('locateMeBtn');
+		_showActivityBtn = document.getElementById('showActivityBtn');
+
 		
+		$(_menuOpenBtn).click(function(e) {
+			console.log(e);
+			animateMenuOn();
+		});
+
+		$(_menuCloseBtn).click(function(e) {
+			console.log(e);
+			animateMenuOff();
+		})
+
 		$(_locateMeBtn).click(function() {
 			console.log('locate button clicked');
+			app.controller.acquireLocation();
 		});
 
 		$(_showActivityBtn).click(function() {
 			console.log('activity button clicked');
 			app.controller.getLocalPubData();
-			//showActivityLoading();
 		});
 
 		
 	})();
 
-	// would like to show some type of spinner/loader
-	
-	/*
-	var showActivityLoading = function() {
-		console.log('showActivityLoading');
-		$(_showActivityBtn).removeClass('fa fa-beer').addClass('fa fa-spinner fa-pulse');
+	var animateMenuOn = function() {
+		console.log('animateMenuOn');
+
+		$(_mainContainer).animate({
+			left: '0px'
+		}, 250, function() {
+			console.log('animation on complete');
+		})
+
+		$(_menuOpenBtn).fadeOut();
 	}
-	
-	var showActivityLoaded = function() {
-		console.log('showActivityLoaded');
-		$(_showActivityBtn).removeClass('fa fa-spinner fa-pulse').addClass('fa fa-beer');
+
+	var animateMenuOff = function() {
+		$(_mainContainer).animate({
+			left: '-300px'
+		}, 250, function() {
+			console.log('animation off complete');
+		});
+
+		$(_menuOpenBtn).fadeIn();
+
 	}
-	*/
+
 
 	
 	return {
