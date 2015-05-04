@@ -25,12 +25,12 @@ function MainUIView(value) {
 
 		
 		$(_menuOpenBtn).click(function(e) {
-			console.log(e);
+			//console.log(e);
 			animateMenuOn();
 		});
 
 		$(_menuCloseBtn).click(function(e) {
-			console.log(e);
+			//console.log(e);
 			animateMenuOff();
 		})
 
@@ -53,7 +53,7 @@ function MainUIView(value) {
 		$(_mainContainer).animate({
 			left: '0px'
 		}, 250, function() {
-			console.log('animation on complete');
+			//console.log('animation on complete');
 		})
 
 		$(_menuOpenBtn).fadeOut();
@@ -63,7 +63,7 @@ function MainUIView(value) {
 		$(_mainContainer).animate({
 			left: '-300px'
 		}, 250, function() {
-			console.log('animation off complete');
+			//console.log('animation off complete');
 		});
 
 		$(_menuOpenBtn).fadeIn();

@@ -53,6 +53,10 @@ function Controller() {
 	var displayUserMarker = function() {
 		app.view.googleMapsView.markUserLocation(app.model.user.getGoogleLatLng(), 'I am here.');
 	}
+
+	var resetMapCenter = function() {
+		app.view.googleMapsView.resetMapCenter();
+	}
 	
 	/*
 	 * getLocalPubData
@@ -74,7 +78,11 @@ function Controller() {
 			.done(function(data) {
 				app.model.pubsResponse = data;
 				console.log("ajax successful");
-				//app.view.mainUIView.showActivityLoaded();
+				app.model.heatMapData = dataParse.getLatLngArray(data);
+				app.model.googleMVCArray = new google.maps.MVCArray(app.model.heatMapData);
+				console.log(app.model.googleMVCArray);
+				displayHeatMap();
+				
 			})
 			.fail(function(data) {
 				console.log("ajax failed");
@@ -82,10 +90,15 @@ function Controller() {
 			});
 	}
 
+	var displayHeatMap = function() {
+		app.view.googleMapsView.displayHeatMap();
+	}
+
 	return {
 		acquireLocation: acquireLocation,
 		displayUserMarker: displayUserMarker,
-		getLocalPubData: getLocalPubData
+		getLocalPubData: getLocalPubData,
+		displayHeatMap: displayHeatMap
 	}
 	
 }
