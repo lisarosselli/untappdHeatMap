@@ -13,6 +13,21 @@ var dataParse = {
 		}
 
 		return dataArray;
+	},
+	getCheckinDataArray: function(data) {
+		var dataArray = new Array();
+		var checkinItems = data.response.checkins.items;
+
+		debugger;
+
+		for (var i = 0; i < checkinItems.length; i++) {
+			var thisObj = new Object(null);
+			thisObj.latLng = new google.maps.LatLng(
+					checkinItems[i].venue.location.lat,
+					checkinItems[i].venue.location.lng
+				);
+			//thisObj.venue
+		}
 	}
 }
 

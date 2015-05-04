@@ -14,7 +14,7 @@ function GoogleMapsView() {
 
 	var init = function() {
 		if (!_map) {
-			var mapOptions = { zoom: 13 };
+			var mapOptions = { zoom: 14 };
 			_map = new google.maps.Map(app.model.mapCanvasElement, mapOptions);
 			console.log('GoogleMapsView init '+_map);
 		}
@@ -62,9 +62,17 @@ function GoogleMapsView() {
 	var displayHeatMap = function() {
 		if (app.model.googleMVCArray) {
 			_heatmap = new google.maps.visualization.HeatmapLayer({
-			    data: app.model.googleMVCArray
+			    data: app.model.googleMVCArray,
+			    opacity: 0.7,
+			    radius: 40
 			  });
 			_heatmap.setMap(_map);
+		}
+	}
+
+	var removeHeatMap = function() {
+		if (_heatmap) {
+			_heatmap.setMap(null);
 		}
 	}
 	
@@ -75,6 +83,7 @@ function GoogleMapsView() {
 			return _map;
 		},
 		resetMapCenter: resetMapCenter,
-		displayHeatMap: displayHeatMap
+		displayHeatMap: displayHeatMap,
+		removeHeatMap: removeHeatMap
 	}
 }

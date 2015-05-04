@@ -80,9 +80,7 @@ function Controller() {
 				console.log("ajax successful");
 				app.model.heatMapData = dataParse.getLatLngArray(data);
 				app.model.googleMVCArray = new google.maps.MVCArray(app.model.heatMapData);
-				console.log(app.model.googleMVCArray);
 				displayHeatMap();
-				
 			})
 			.fail(function(data) {
 				console.log("ajax failed");
@@ -92,6 +90,10 @@ function Controller() {
 
 	var displayHeatMap = function() {
 		app.view.googleMapsView.displayHeatMap();
+	}
+
+	var plotCheckins = function() {
+		app.view.googleMapsView.plotCheckins();
 	}
 
 	return {
