@@ -76,6 +76,101 @@ function GoogleMapsView() {
 		}
 	}
 	
+	/*
+	 * @param venueData array
+	 */
+	var displayCheckinsByVenue = function(data) {
+		debugger;
+		
+		_.each(data, function(v, k, l) {
+			console.log(v);
+
+			debugger;
+
+			var marker;
+			var infoWindow;
+			var containerDiv = document.createElement('div');
+			containerDiv.className = 'venueWindow';
+			
+			for (var i = 0; i < v.length; i++) {
+				var beerEntry = document.createElement('div');
+				beerEntry.className = 'beerCheckin';
+			
+				var img = document.createElement('img');
+				img.src = v[i].beer.beer_label;
+			
+				var h6 = document.createElement('h6');
+				h6.textContent = v[i].beer.beer_name + 
+								'<span class=\'brewery\'>' + v[i].brewery.brewery_name + '</span>' +
+								v[i].beer.beer_abv + '% ABV';
+				beerEntry.appendChild(img);
+				beerEntry.appendChild(h6);
+				containerDiv.appendChild(beerEntry);
+				debugger;
+			}
+			
+			/*
+			marker = new google.maps.Marker({
+				animation: google.maps.Animation.DROP,
+				position: new google.maps.LatLng(v[0].venue.location.lat, v[0].venue.location.lng),
+				map: _map
+			});
+			*/
+			
+			console.log(containerDiv);
+			
+
+			infoWindow = new google.maps.InfoWindow({
+				content: containerDiv,
+				position: new google.maps.LatLng(v[0].venue.location.lat, v[0].venue.location.lng),
+			});
+			infoWindow.open();
+			//infoWindow.setContent(containerDiv);
+			//infoWindow.open(_map, marker);
+			//_markers.push(marker);
+
+			
+		})
+		
+		/*
+		for (var i = 0; i < data.length; i++) {
+			var marker;
+			var infoWindow;
+			var thisVenue = data[i];
+			var containerDiv = document.createElement('div');
+			containerDiv.className = 'venueWindow';
+			
+			for (var a = 0; a < thisVenue.length; a++) {
+				var beerEntry = document.createElement('div');
+				beerEntry.className = 'beerCheckin';
+			
+				var img = document.createElement('img');
+				img.src = thisVenue[a].beer.beer_label;
+			
+				var h6 = document.createElement('h6');
+				h6.textContent = thisVenue[a].beer.beer_name + 
+								'<span class=\'brewery\'>' + thisVenue[a].brewery.brewery_name + '</span>' +
+								thisVenue[a].beer.beer_abv + '% ABV';
+				beerEntry.appendChild(img);
+				beerEntry.appendChild(h6);
+				containerDiv.appendChild(beerEntry);
+			}
+			
+			marker = new google.maps.Marker({
+				animation: google.maps.Animation.DROP,
+				position: new google.maps.LatLng(thisVenue[0].venue.location.lat, thisVenue[0].venue.location.lng),
+				map: _map
+			});
+			
+			infoWindow = new google.maps.InfoWindow();
+			infoWindow.setContent(containerDiv);
+			infoWindow.open(_map, marker);
+			_markers.push(marker);
+		}
+		*/
+		
+	}
+	
 	return {
 		init: init,
 		markUserLocation: markUserLocation,
@@ -84,6 +179,7 @@ function GoogleMapsView() {
 		},
 		resetMapCenter: resetMapCenter,
 		displayHeatMap: displayHeatMap,
-		removeHeatMap: removeHeatMap
+		removeHeatMap: removeHeatMap,
+		displayCheckinsByVenue: displayCheckinsByVenue
 	}
 }

@@ -11,6 +11,7 @@ function Model() {
 	var _geoSuccess = false;
 	var _pubsResponse;
 	var _heatMapData;
+	var _venueArray;
 	var _googleMVCArray;
 	
 	var setUntappdApi = function(value) {
@@ -52,6 +53,12 @@ function Model() {
 		},
 		set heatMapData(value) {
 			_heatMapData = value;
+		},
+		get venueArray() {
+			if (!_venueArray) {
+				_venueArray = new Array();
+			}
+			return _venueArray;
 		},
 		get googleMVCArray() {
 			return _googleMVCArray;

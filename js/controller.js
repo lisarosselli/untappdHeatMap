@@ -69,6 +69,7 @@ function Controller() {
 			ajaxUrl = 'https://api.untappd.com/v4/thepub/local?access_token=A3DF816D42AA28B509413D4903139E8650A2B5C4&lat=41.8854785&lng=-87.6402523';
 		} else {
 			console.debug('getLocalPubData > using Google generated lat/lng!');
+			// hit the API for local checkins (public users)
 			ajaxUrl = app.model.untappdApi.getPubsUri(app.model.user.location.lat, app.model.user.location.lng);
 		}
 		
@@ -92,15 +93,18 @@ function Controller() {
 		app.view.googleMapsView.displayHeatMap();
 	}
 
-	var plotCheckins = function() {
-		app.view.googleMapsView.plotCheckins();
+	var displayCheckinsByVenue = function() {
+		var venueCheckinArray = new Array();
+		venueCheckinArray = dataParse.groupCheckinDataByVenue(app.model.pubsResponse);
+		app.view.googleMapsView.displayCheckinsByVenue(venueCheckinArray);
 	}
 
 	return {
 		acquireLocation: acquireLocation,
 		displayUserMarker: displayUserMarker,
 		getLocalPubData: getLocalPubData,
-		displayHeatMap: displayHeatMap
+		displayHeatMap: displayHeatMap,
+		displayCheckinsByVenue: displayCheckinsByVenue
 	}
 	
 }

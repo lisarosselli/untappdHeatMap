@@ -1,5 +1,4 @@
 var dataParse = {
-	
 	getLatLngArray: function(data) {
 		var dataArray = new Array();
 		var checkinItems = data.response.checkins.items;
@@ -14,22 +13,19 @@ var dataParse = {
 
 		return dataArray;
 	},
-	getCheckinDataArray: function(data) {
+	groupCheckinDataByVenue: function(data) {
 		var dataArray = new Array();
-		var checkinItems = data.response.checkins.items;
-
-		debugger;
-
-		for (var i = 0; i < checkinItems.length; i++) {
-			var thisObj = new Object(null);
-			thisObj.latLng = new google.maps.LatLng(
-					checkinItems[i].venue.location.lat,
-					checkinItems[i].venue.location.lng
-				);
-			//thisObj.venue
-		}
+		dataArray = _.groupBy(data.response.checkins.items, function(checkinObj) {
+			return checkinObj.venue.venue_id;
+		});
+		return dataArray;
 	}
 }
+
+/*
+	3 check-ins here
+	pull those checkins / have them in an object ready
+*/
 
 /*
 		https://developers.google.com/maps/documentation/javascript/examples/layer-heatmap
