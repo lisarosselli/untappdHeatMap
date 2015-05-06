@@ -63,3 +63,33 @@ nav {
 #menu ul li:hover {
 	background-color: red;
 }
+
+.venueWindow {
+	max-width: 250px;
+}
+
+.venueWindow hr {
+	margin-top: 0;
+	margin-bottom: 6px;
+}
+
+.beerCheckin {
+	padding-top: 15px;
+}
+
+.beerCheckin h6 {
+	font-style: italic;
+	font-weight: bold;
+	margin-top: 0;
+}
+
+.beerCheckin img {
+	width: 55px;
+	float: left;
+	padding-right: 10px;
+}
+
+.beerCheckin .brewery {
+	margin-left: 4px;
+	font-weight: normal;
+}

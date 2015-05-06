@@ -10,6 +10,7 @@ function GoogleMapsView() {
 	
 	var _map;
 	var _markers = [];
+	var _infoWindows = [];
 	var _heatmap;
 
 	var init = function() {
@@ -85,8 +86,6 @@ function GoogleMapsView() {
 		_.each(data, function(v, k, l) {
 			console.log(v);
 
-			debugger;
-
 			var marker;
 			var infoWindow;
 			var containerDiv = document.createElement('div');
@@ -100,31 +99,42 @@ function GoogleMapsView() {
 				img.src = v[i].beer.beer_label;
 			
 				var h6 = document.createElement('h6');
-				h6.textContent = v[i].beer.beer_name + 
-								'<span class=\'brewery\'>' + v[i].brewery.brewery_name + '</span>' +
-								v[i].beer.beer_abv + '% ABV';
+				
+				var span = document.createElement('span');
+				span.className = 'brewery';
+				span.textContent = v[i].brewery.brewery_name;
+				h6.textContent = v[i].beer.beer_name + span + v[i].beer.beer_abv + '% ABV';
+				
 				beerEntry.appendChild(img);
 				beerEntry.appendChild(h6);
 				containerDiv.appendChild(beerEntry);
-				debugger;
 			}
 			
-			/*
 			marker = new google.maps.Marker({
+				localId: k,
 				animation: google.maps.Animation.DROP,
 				position: new google.maps.LatLng(v[0].venue.location.lat, v[0].venue.location.lng),
 				map: _map
 			});
-			*/
 			
-			console.log(containerDiv);
+			_markers.push(marker);
+			
+			console.log(marker);
+			
+			
+			//console.log(containerDiv);
 			
 
 			infoWindow = new google.maps.InfoWindow({
+				localId: k,
 				content: containerDiv,
+				maxWidth: 250,
 				position: new google.maps.LatLng(v[0].venue.location.lat, v[0].venue.location.lng),
+				title: v.length + ' Checkins @' + v[0].venue.venue_name
 			});
-			infoWindow.open();
+	
+			infoWindow.open(_map, marker);
+			_infoWindows.push(infoWindow);
 			//infoWindow.setContent(containerDiv);
 			//infoWindow.open(_map, marker);
 			//_markers.push(marker);
