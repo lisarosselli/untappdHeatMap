@@ -108,9 +108,22 @@ function GoogleMapsView() {
 												v[i].beer.beer_abv + '% ABV &#149; ' +
 												'<span class=\'brewery\'>'+ v[i].brewery.brewery_name + 
 												'</span>';
+												
+				var btn = document.createElement('button');
+				btn.textContent = 'More about ' + v[i].beer.beer_name;
+				btn.setAttribute('data-id', v[i].beer.bid);
+				btn.setAttribute('class', 'moreInfo btn btn-default');
+				
+				// 15 chars max
+				
+				$(btn).click(function() {
+					console.log(this.dataset.id);
+					app.controller.getBeerInfo(this.dataset.id);
+				});
 				
 				beerEntry.appendChild(img);
 				beerEntry.appendChild(h6);
+				beerEntry.appendChild(btn);
 				containerDiv.appendChild(beerEntry);
 			}
 			
