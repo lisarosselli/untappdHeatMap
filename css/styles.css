@@ -67,6 +67,7 @@ nav {
 
 .venueWindow {
 	max-width: 250px;
+	width: 250px;
 }
 
 .venueWindow hr {
@@ -75,8 +76,8 @@ nav {
 }
 
 .beerCheckin {
-	padding-top: 15px;
-	width: 260px;
+	max-width: 250px;
+	width: 250px;
 }
 
 .beerCheckin h6 {
@@ -86,14 +87,27 @@ nav {
 }
 
 .beerCheckin img {
-	width: 55px;
+	width: 65px;
 	float: left;
 	padding-right: 10px;
+}
+
+.beerImg {
+	background-color: yellow;
+}
+
+.beerTag {
+	background-color: aliceblue;
 }
 
 .beerCheckin .brewery {
 	margin-left: 4px;
 	font-weight: normal;
+}
+
+.moreInfo {
+	margin-top: -10px;
+	padding: 0;
 }
 
 h4 {
