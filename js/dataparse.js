@@ -19,6 +19,12 @@ var dataParse = {
 			return checkinObj.venue.venue_id;
 		});
 		return dataArray;
+	},
+	truncateString: function(str, maxChars) {
+		console.log(str);
+		var truncatedStr = str.substr(0, maxChars-1);
+		truncatedStr += "...";
+		return truncatedStr;
 	}
 }
 

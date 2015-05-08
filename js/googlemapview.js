@@ -99,31 +99,37 @@ function GoogleMapsView() {
 			for (var i = 0; i < v.length; i++) {
 				var beerEntry = document.createElement('div');
 				beerEntry.className = 'beerCheckin';
+				
+				var beerImg = document.createElement('div');
+				beerImg.className = 'beerImg';
+				
+				var beerTag = document.createElement('div');
+				beerTag.className = 'beerTag';
 			
 				var img = document.createElement('img');
 				img.src = v[i].beer.beer_label;
 			
-				var h6 = document.createElement('h6');
-				h6.innerHTML = v[i].beer.beer_name + ' &#149; ' + 
-												v[i].beer.beer_abv + '% ABV &#149; ' +
-												'<span class=\'brewery\'>'+ v[i].brewery.brewery_name + 
-												'</span>';
+				var h5 = document.createElement('h5');
+				h5.innerHTML = v[i].beer.beer_name + ', ' + 
+												v[i].beer.beer_abv + '% ABV' + '<br>' +
+												'<small>'+ v[i].brewery.brewery_name + 
+												'</small>';
 												
 				var btn = document.createElement('button');
-				btn.textContent = 'More about ' + v[i].beer.beer_name;
+				btn.textContent = 'More info...';
 				btn.setAttribute('data-id', v[i].beer.bid);
-				btn.setAttribute('class', 'moreInfo btn btn-default');
-				
-				// 15 chars max
+				btn.setAttribute('class', 'moreInfo btn btn-link');
 				
 				$(btn).click(function() {
 					console.log(this.dataset.id);
 					app.controller.getBeerInfo(this.dataset.id);
 				});
 				
-				beerEntry.appendChild(img);
-				beerEntry.appendChild(h6);
-				beerEntry.appendChild(btn);
+				beerEntry.appendChild(beerImg);
+					beerImg.appendChild(img);
+				beerEntry.appendChild(beerTag);
+					beerTag.appendChild(h5);
+					beerTag.appendChild(btn);
 				containerDiv.appendChild(beerEntry);
 			}
 			
