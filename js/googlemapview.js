@@ -80,6 +80,8 @@ function GoogleMapsView() {
 	 * @param venueData array
 	 */
 	var displayCheckinsByVenue = function(data) {
+		clearVenueMarkers();
+		
 		_.each(data, function(v, k, l) {
 			var marker;
 			var infoWindow;
@@ -112,11 +114,22 @@ function GoogleMapsView() {
 				containerDiv.appendChild(beerEntry);
 			}
 			
+			// setting a custom icon, a circle
+			// then setting opacity to 0 to allow viewing
+			// of the heatmap underneath
 			marker = new google.maps.Marker({
 				id: k,
 				animation: google.maps.Animation.DROP,
 				clickable: true,
 				isOpen: false,
+				icon: {
+					fillColor: "#BB2B44",
+					fillOpacity: 0,
+					strokeColor: "#f4953b",
+					strokeOpacity: 0,
+					scale: 17,
+					path: google.maps.SymbolPath.CIRCLE
+				},
 				position: new google.maps.LatLng(v[0].venue.location.lat, v[0].venue.location.lng),
 				map: _map
 			});
@@ -139,6 +152,15 @@ function GoogleMapsView() {
 		setupMarkerClickEvents(_markers, _infoWindows);
 	}
 	
+	var clearVenueMarkers = function() {
+		_markers = [];
+		_infoWindows = [];
+	}
+	
+	/*
+	 * @param array of google.maps.Marker objects
+	 * @param array of google.maps.InfoWindow objects
+	 */
 	var setupInfoWindowClose = function(markerArray, infoWindowArray) {
 		_.each(infoWindowArray, function(element, index, list) {
 			element.addListener('closeclick', function() {
@@ -153,6 +175,7 @@ function GoogleMapsView() {
 	
 	/*
 	 * @param array of google.maps.Marker objects
+	 * @param array of google.maps.InfoWindow objects
 	 */
 	var setupMarkerClickEvents = function(markerArray, infoWindowArray) {
 		_.each(markerArray, function(element, index, list) {
@@ -168,6 +191,7 @@ function GoogleMapsView() {
 					if (infoWindow) {
 						infoWindow.open(_map, this);
 					};
+					
 					this.isOpen = true;
 				} 
 			});

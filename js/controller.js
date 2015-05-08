@@ -92,8 +92,14 @@ function Controller() {
 
 	var displayHeatMap = function() {
 		app.view.googleMapsView.displayHeatMap();
+		var venueCheckinArray = new Array();
+		venueCheckinArray = dataParse.groupCheckinDataByVenue(app.model.pubsResponse);
+		app.view.googleMapsView.displayCheckinsByVenue(venueCheckinArray);
 	}
 
+  // maybe this is now moot?
+	// doing this in one fell swoop 
+	/*
 	var displayCheckinsByVenue = function() {
 		if (app.model.pubsResponse) {
 			completeDisplayCheckinsByVenue();
@@ -107,13 +113,13 @@ function Controller() {
 		venueCheckinArray = dataParse.groupCheckinDataByVenue(app.model.pubsResponse);
 		app.view.googleMapsView.displayCheckinsByVenue(venueCheckinArray);
 	}
+	*/
 
 	return {
 		acquireLocation: acquireLocation,
 		displayUserMarker: displayUserMarker,
 		getLocalPubData: getLocalPubData,
-		displayHeatMap: displayHeatMap,
-		displayCheckinsByVenue: displayCheckinsByVenue
+		displayHeatMap: displayHeatMap
 	}
 	
 }
