@@ -113,8 +113,10 @@ function GoogleMapsView() {
 			}
 			
 			marker = new google.maps.Marker({
-				localId: k,
+				id: k,
 				animation: google.maps.Animation.DROP,
+				clickable: true,
+				isOpen: false,
 				position: new google.maps.LatLng(v[0].venue.location.lat, v[0].venue.location.lng),
 				map: _map
 			});
@@ -122,59 +124,54 @@ function GoogleMapsView() {
 			_markers.push(marker);
 
 			infoWindow = new google.maps.InfoWindow({
-				localId: k,
+				id: k,
+				clickable: true,
 				content: containerDiv,
 				maxWidth: 250,
-				position: new google.maps.LatLng(v[0].venue.location.lat, v[0].venue.location.lng),
-				title: v.length + ' Checkins @' + v[0].venue.venue_name
+				position: new google.maps.LatLng(v[0].venue.location.lat, v[0].venue.location.lng)
 			});
 	
-			infoWindow.open(_map, marker);
-			_infoWindows.push(infoWindow);
-			//infoWindow.setContent(containerDiv);
 			//infoWindow.open(_map, marker);
-			//_markers.push(marker);
-
-			
-		})
+			_infoWindows.push(infoWindow);
+		});
 		
-		/*
-		for (var i = 0; i < data.length; i++) {
-			var marker;
-			var infoWindow;
-			var thisVenue = data[i];
-			var containerDiv = document.createElement('div');
-			containerDiv.className = 'venueWindow';
-			
-			for (var a = 0; a < thisVenue.length; a++) {
-				var beerEntry = document.createElement('div');
-				beerEntry.className = 'beerCheckin';
-			
-				var img = document.createElement('img');
-				img.src = thisVenue[a].beer.beer_label;
-			
-				var h6 = document.createElement('h6');
-				h6.textContent = thisVenue[a].beer.beer_name + 
-								'<span class=\'brewery\'>' + thisVenue[a].brewery.brewery_name + '</span>' +
-								thisVenue[a].beer.beer_abv + '% ABV';
-				beerEntry.appendChild(img);
-				beerEntry.appendChild(h6);
-				containerDiv.appendChild(beerEntry);
-			}
-			
-			marker = new google.maps.Marker({
-				animation: google.maps.Animation.DROP,
-				position: new google.maps.LatLng(thisVenue[0].venue.location.lat, thisVenue[0].venue.location.lng),
-				map: _map
+		setupInfoWindowClose(_markers, _infoWindows);
+		setupMarkerClickEvents(_markers, _infoWindows);
+	}
+	
+	var setupInfoWindowClose = function(markerArray, infoWindowArray) {
+		_.each(infoWindowArray, function(element, index, list) {
+			element.addListener('closeclick', function() {
+				var t = this;
+				var marker = _.find(markerArray, function(m) {
+					return m.id == t.id;
+				});
+				marker.isOpen = false;
 			});
-			
-			infoWindow = new google.maps.InfoWindow();
-			infoWindow.setContent(containerDiv);
-			infoWindow.open(_map, marker);
-			_markers.push(marker);
-		}
-		*/
-		
+		});
+	}
+	
+	/*
+	 * @param array of google.maps.Marker objects
+	 */
+	var setupMarkerClickEvents = function(markerArray, infoWindowArray) {
+		_.each(markerArray, function(element, index, list) {
+			element.addListener('click', function() {
+				// find this marker's matching infoWindow
+				// and display it
+				if (!this.isOpen) {
+					var t = this;
+					var infoWindow = _.find(infoWindowArray, function(w) {
+						return w.id == t.id;
+					});
+					
+					if (infoWindow) {
+						infoWindow.open(_map, this);
+					};
+					this.isOpen = true;
+				} 
+			});
+		});
 	}
 	
 	return {
@@ -182,6 +179,12 @@ function GoogleMapsView() {
 		markUserLocation: markUserLocation,
 		get map() {
 			return _map;
+		},
+		get markers() {
+			return _markers;
+		},
+		get infoWindows() {
+			return _infoWindows;
 		},
 		resetMapCenter: resetMapCenter,
 		displayHeatMap: displayHeatMap,
