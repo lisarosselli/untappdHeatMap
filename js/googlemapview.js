@@ -15,7 +15,7 @@ function GoogleMapsView() {
 
 	var init = function() {
 		if (!_map) {
-			var mapOptions = { zoom: 14 };
+			var mapOptions = { zoom: 15 };
 			_map = new google.maps.Map(app.model.mapCanvasElement, mapOptions);
 			console.log('GoogleMapsView init '+_map);
 		}
@@ -42,7 +42,6 @@ function GoogleMapsView() {
 			
 			infoWindow = new google.maps.InfoWindow();
 			infoWindow.setContent('Here for the beer.');
-			//infoWindow.setContent('<h1>Hello World</h1><h6>something else</h6><img src="https://d1c8v1qci5en44.cloudfront.net/site/brewery_logos/brewery-129756_5cf76.jpeg">');
 			infoWindow.open(_map, marker);
 			_markers.push(marker);
 
@@ -81,16 +80,20 @@ function GoogleMapsView() {
 	 * @param venueData array
 	 */
 	var displayCheckinsByVenue = function(data) {
-		debugger;
-		
 		_.each(data, function(v, k, l) {
-			console.log(v);
-
 			var marker;
 			var infoWindow;
 			var containerDiv = document.createElement('div');
+			
 			containerDiv.className = 'venueWindow';
 			
+			// create headline
+			var header = document.createElement('h4');
+			var checkinText = (v.length > 1) ? ' Check-ins at ' : ' Check-in at ';
+			header.textContent = v.length + checkinText + v[0].venue.venue_name;
+			containerDiv.appendChild(header);
+			
+			// amalgamate individual beer checkins per venue
 			for (var i = 0; i < v.length; i++) {
 				var beerEntry = document.createElement('div');
 				beerEntry.className = 'beerCheckin';
@@ -99,11 +102,10 @@ function GoogleMapsView() {
 				img.src = v[i].beer.beer_label;
 			
 				var h6 = document.createElement('h6');
-				
-				var span = document.createElement('span');
-				span.className = 'brewery';
-				span.textContent = v[i].brewery.brewery_name;
-				h6.textContent = v[i].beer.beer_name + span + v[i].beer.beer_abv + '% ABV';
+				h6.innerHTML = v[i].beer.beer_name + ' &#149; ' + 
+												v[i].beer.beer_abv + '% ABV &#149; ' +
+												'<span class=\'brewery\'>'+ v[i].brewery.brewery_name + 
+												'</span>';
 				
 				beerEntry.appendChild(img);
 				beerEntry.appendChild(h6);
@@ -118,12 +120,6 @@ function GoogleMapsView() {
 			});
 			
 			_markers.push(marker);
-			
-			console.log(marker);
-			
-			
-			//console.log(containerDiv);
-			
 
 			infoWindow = new google.maps.InfoWindow({
 				localId: k,

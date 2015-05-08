@@ -34,7 +34,7 @@ nav {
 
 #menu {
 	position: absolute;
-	background-color: yellow;
+	background-color: #fefef9;
 	height: 100%;
 	width: 300px;
 	top: 0;
@@ -49,10 +49,11 @@ nav {
 
 #menu ul li {
 	list-style-type: none;
-	padding: 0.8em;
+	padding: 1.1em;
 	margin: 0;
-	font-size: 1.5em;
-	border-bottom: 1px solid black;
+	font-size: 1.2em;
+	border-bottom: 1px solid #efefef;
+	border-top: 2px solid #fff;
 	cursor: pointer;
 }
 
@@ -61,7 +62,7 @@ nav {
 }
 
 #menu ul li:hover {
-	background-color: red;
+	background-color: orange;
 }
 
 .venueWindow {
@@ -92,4 +93,8 @@ nav {
 .beerCheckin .brewery {
 	margin-left: 4px;
 	font-weight: normal;
+}
+
+h4 {
+	margin-bottom: 0;
 }

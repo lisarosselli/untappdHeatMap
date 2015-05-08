@@ -22,15 +22,14 @@ function MainUIView(value) {
 		_menuCloseBtn = document.getElementById('menuCloseBtn');
 		_locateMeBtn = document.getElementById('locateMeBtn');
 		_showActivityBtn = document.getElementById('showActivityBtn');
+		_showPlots = document.getElementById('showPlots');
 
 		
 		$(_menuOpenBtn).click(function(e) {
-			//console.log(e);
 			animateMenuOn();
 		});
 
 		$(_menuCloseBtn).click(function(e) {
-			//console.log(e);
 			animateMenuOff();
 		})
 
@@ -40,9 +39,14 @@ function MainUIView(value) {
 		});
 
 		$(_showActivityBtn).click(function() {
-			console.log('activity button clicked');
-			app.controller.getLocalPubData();
+			app.controller.getLocalPubData(app.controller.displayHeatMap); //TODO: add callback
+			//animateMenuOff();
 		});
+		
+		$(_showPlots).click(function() {
+			app.controller.displayCheckinsByVenue();
+			//animateMenuOff();
+		})
 
 		
 	})();

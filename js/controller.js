@@ -61,15 +61,15 @@ function Controller() {
 	/*
 	 * getLocalPubData
 	 */
-	var getLocalPubData = function() {
+	var getLocalPubData = function(callback) {
 		var ajaxUrl;
 		
 		if (!app.model.user.location.lat || !app.model.user.location.lng) {
 			console.warn('getLocalPubData > using Chicago Loop default location');
 			ajaxUrl = 'https://api.untappd.com/v4/thepub/local?access_token=A3DF816D42AA28B509413D4903139E8650A2B5C4&lat=41.8854785&lng=-87.6402523';
 		} else {
-			console.debug('getLocalPubData > using Google generated lat/lng!');
 			// hit the API for local checkins (public users)
+			console.debug('getLocalPubData > using Google generated lat/lng');
 			ajaxUrl = app.model.untappdApi.getPubsUri(app.model.user.location.lat, app.model.user.location.lng);
 		}
 		
@@ -81,11 +81,12 @@ function Controller() {
 				console.log("ajax successful");
 				app.model.heatMapData = dataParse.getLatLngArray(data);
 				app.model.googleMVCArray = new google.maps.MVCArray(app.model.heatMapData);
-				displayHeatMap();
+				if (callback) {
+					callback();
+				}
 			})
 			.fail(function(data) {
 				console.log("ajax failed");
-				//app.view.mainUIView.showActivityLoaded();
 			});
 	}
 
@@ -94,6 +95,14 @@ function Controller() {
 	}
 
 	var displayCheckinsByVenue = function() {
+		if (app.model.pubsResponse) {
+			completeDisplayCheckinsByVenue();
+		} else {
+			getLocalPubData(completeDisplayCheckinsByVenue);
+		}
+	}
+	
+	var completeDisplayCheckinsByVenue = function() {
 		var venueCheckinArray = new Array();
 		venueCheckinArray = dataParse.groupCheckinDataByVenue(app.model.pubsResponse);
 		app.view.googleMapsView.displayCheckinsByVenue(venueCheckinArray);

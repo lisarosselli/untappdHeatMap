@@ -10,15 +10,7 @@ function View() {
 	var _googleMapsView = new GoogleMapsView();
 	var _mainUIView = new MainUIView(_mainContainer);
 	
-
-	
-	var init = function() {
-		
-	}
-	
-	
-	
-	
+	var init = function() {};
 	
 	return {
 		mainUIView: _mainUIView,
