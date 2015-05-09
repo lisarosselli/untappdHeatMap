@@ -22,6 +22,8 @@ function MainUIView(value) {
 		_menuCloseBtn = document.getElementById('menuCloseBtn');
 		_locateMeBtn = document.getElementById('locateMeBtn');
 		_showActivityBtn = document.getElementById('showActivityBtn');
+		_loadIcon1 = document.getElementById('loadIcon1'); // location
+		_loadIcon2 = document.getElementById('loadIcon2'); // checkins
 		
 		$(_menuOpenBtn).click(function(e) {
 			animateMenuOn();
@@ -40,6 +42,9 @@ function MainUIView(value) {
 			app.controller.getLocalPubData(app.controller.displayHeatMap); //TODO: add callback
 			//animateMenuOff();
 		});
+		
+		$(_loadIcon1).toggle();
+		$(_loadIcon2).toggle();
 		
 	})();
 
@@ -65,11 +70,22 @@ function MainUIView(value) {
 		$(_menuOpenBtn).fadeIn();
 	}
 	
+	var toggleLocationLoadIcon = function() {
+		$(_loadIcon1).toggle();
+	}
+	
+	var toggleCheckinsLoadIcon = function() {
+		$(_loadIcon2).toggle();
+	}
+	
 	var showBeerInfoModal = function() {
 		var d = document.createElement('div');
 		var h4 = document.createElement('h4');
 		var h6 = document.createElement('h6');
 		var p = document.createElement('p');
+		
+		d.setAttribute('id', 'infoModal');
+		
 		
 	
 	}
@@ -80,6 +96,8 @@ function MainUIView(value) {
 		get titleBar() {
 			return _titleBar;
 		},
+		toggleLocationLoadIcon,
+		toggleCheckinsLoadIcon,
 		showBeerInfoModal: showBeerInfoModal
 	}
 }

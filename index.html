@@ -12,16 +12,20 @@
 		<div id='mainContainer'>
 			
 			<div id='titleBar'>
-				<button id='menuOpenBtn'><i class="fa fa-bars"></i></button>
+				<button id='menuOpenBtn' class='btn btn-default'><i class="fa fa-bars"></i></button>
 			</div>
 			
 			<div id='menu'>
 				<ul>
-					<li id='menuCloseBtn'>Untappd HeatMap<i class="fa fa-times"></i></li>
-					<li id='locateMeBtn'>Locate Me!</li>
-					<li id='showActivityBtn'>Where's everyone drinking?</li>
+					<li id='menuCloseBtn'><i class="fa fa-times"></i></li>
+					<li id='locateMeBtn'>Locate Me!&nbsp;<span id='loadIcon1'><i class="fa fa-spinner fa-pulse"></i></span></li>
+					<li id='showActivityBtn'>Where's everyone drinking?&nbsp;<span id='loadIcon2'><i class="fa fa-spinner fa-pulse"></i></span></li>
 				</ul>
-				<p>Some content here?</p>
+				<p class='footer'>
+						For the love of beer!<br>
+						Beer HeatMap brought to you by biocheezit & Untappd API<br>
+					<a href='https://untappd.com/' target='blank'><img style='width:70px;' src='img/untappd_logo1.png'></a>
+				</p>
 			</div>
 
 			<div id='map-canvas'></div>

@@ -73,6 +73,8 @@ function Controller() {
 			ajaxUrl = app.model.untappdApi.getPubsUri(app.model.user.location.lat, app.model.user.location.lng);
 		}
 		
+		app.view.mainUIView.toggleCheckinsLoadIcon();
+		
 		$.ajax({
 			url: ajaxUrl,
 		})
@@ -81,12 +83,14 @@ function Controller() {
 				console.log("ajax successful");
 				app.model.heatMapData = dataParse.getLatLngArray(data);
 				app.model.googleMVCArray = new google.maps.MVCArray(app.model.heatMapData);
+				app.view.mainUIView.toggleCheckinsLoadIcon();
 				if (callback) {
 					callback();
 				}
 			})
 			.fail(function(data) {
 				console.log("ajax failed");
+				app.view.mainUIView.toggleCheckinsLoadIcon();
 			});
 	}
 
