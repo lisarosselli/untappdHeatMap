@@ -24,6 +24,9 @@ function MainUIView(value) {
 		_showActivityBtn = document.getElementById('showActivityBtn');
 		_loadIcon1 = document.getElementById('loadIcon1'); // location
 		_loadIcon2 = document.getElementById('loadIcon2'); // checkins
+		_infoModal = document.getElementById('infoModal');
+		_infoCloseBtn = document.getElementById('infoCloseBtn');
+		_modalContent = document.getElementById('modalContent');
 		
 		$(_menuOpenBtn).click(function(e) {
 			animateMenuOn();
@@ -39,12 +42,17 @@ function MainUIView(value) {
 		});
 
 		$(_showActivityBtn).click(function() {
-			app.controller.getLocalPubData(app.controller.displayHeatMap); //TODO: add callback
+			app.controller.getLocalPubData(app.controller.displayHeatMap);
 			//animateMenuOff();
 		});
 		
 		$(_loadIcon1).toggle();
 		$(_loadIcon2).toggle();
+		$(_infoModal).toggle();
+		
+		$(_infoCloseBtn).click(function() {
+			$(_infoModal).fadeOut();
+		})
 		
 	})();
 
@@ -78,19 +86,19 @@ function MainUIView(value) {
 		$(_loadIcon2).toggle();
 	}
 	
-	var showBeerInfoModal = function() {
-		var d = document.createElement('div');
-		var h4 = document.createElement('h4');
-		var h6 = document.createElement('h6');
-		var p = document.createElement('p');
+	var fadeInModal = function(data) {
+		if (data != undefined && data != null) {
+			$(_modalContent).empty();
+			var divHtml = dataParse.createBeerInfoDisplay(data);
+			_modalContent.appendChild(divHtml);
+		}
 		
-		d.setAttribute('id', 'infoModal');
-		
-		
-	
+		$(_infoModal).fadeIn();
 	}
-
-
+	
+	var fadeOutModal = function() {
+		$(_infoModal).fadeOut();
+	}
 	
 	return {
 		get titleBar() {
@@ -98,6 +106,7 @@ function MainUIView(value) {
 		},
 		toggleLocationLoadIcon,
 		toggleCheckinsLoadIcon,
-		showBeerInfoModal: showBeerInfoModal
+		fadeInModal: fadeInModal,
+		fadeOutModal: fadeOutModal
 	}
 }

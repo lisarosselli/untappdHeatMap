@@ -40,14 +40,3 @@ window.onload = function() {
 		app.controller.acquireLocation();
 	}
 };
-
-
-
-/*
- * some notes
- * get the local pub data
- * understand the venues and locale of each checkin
- * catalog the beers that are being checked in
- * provide a search which auto-completes with
- * the beers that have been checked in
- */

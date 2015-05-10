@@ -105,7 +105,17 @@ function Controller() {
 		var ajaxUrl = app.model.untappdApi.getBeerInfoUri(beerId);
 		console.log(ajaxUrl);
 		
-		//$.ajax
+		
+		$.ajax({
+			url: ajaxUrl,
+		})
+			.done(function(data) {
+				console.log('beer info ajax successful');
+				app.view.mainUIView.fadeInModal(data);
+			})
+			.fail(function(data) {
+				console.log('beer info ajax fail');
+			})
 	}
 
 	return {

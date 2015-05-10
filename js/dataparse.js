@@ -10,9 +10,9 @@ var dataParse = {
 				);
 			dataArray.push(thisLatLng);
 		}
-
 		return dataArray;
 	},
+	
 	groupCheckinDataByVenue: function(data) {
 		var dataArray = new Array();
 		dataArray = _.groupBy(data.response.checkins.items, function(checkinObj) {
@@ -20,11 +20,41 @@ var dataParse = {
 		});
 		return dataArray;
 	},
+	
 	truncateString: function(str, maxChars) {
 		console.log(str);
 		var truncatedStr = str.substr(0, maxChars-1);
 		truncatedStr += "...";
 		return truncatedStr;
+	},
+	
+	createBeerInfoDisplay: function(data) {
+		var div 	= document.createElement('div');
+		var h3 		= document.createElement('h3');
+		var h4a 	= document.createElement('h4');
+		var h4b 	= document.createElement('h4');
+		var p 		= document.createElement('p');
+		
+		div.appendChild(h3);
+		div.appendChild(h4a);
+		div.appendChild(h4b);
+		div.appendChild(p);
+		
+		h3.textContent 	= data.response.beer.beer_name;
+		h4a.innerHTML  	= data.response.beer.beer_style + '<br>' +
+										 	data.response.beer.beer_abv + '% ABV' + '<br>' +
+										 	data.response.beer.beer_ibu + ' IBU' + '<br>' +
+										 	data.response.beer.rating_score + '/5.0';		
+														
+		h4b.innerHTML = '<a href=\'' + data.response.beer.brewery.contact.url +'\'>' +
+											'<img style=\'height:37px;\' src=\'' + data.response.beer.brewery.brewery_label + '\'>&nbsp;' +
+											data.response.beer.brewery.brewery_name + '</a>';
+											
+		p.textContent = (data.response.beer.beer_description != "") ? 
+											data.response.beer.beer_description : 
+											'No beer description (yet) for ' + data.response.beer.beer_name + '.';
+											
+		return div;
 	}
 }
 

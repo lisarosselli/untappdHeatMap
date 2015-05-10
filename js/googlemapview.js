@@ -172,6 +172,11 @@ function GoogleMapsView() {
 	}
 	
 	var clearVenueMarkers = function() {
+		_.each(_markers, function(element, index, list) {
+			if (index > 0) {
+				element.setMap(null);
+			}
+		});
 		_markers = [];
 		_infoWindows = [];
 	}
