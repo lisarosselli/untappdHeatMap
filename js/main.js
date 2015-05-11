@@ -43,7 +43,8 @@ window.onload = function() {
 
 /*
 	TODO:
-	1. check fxnality for locate me btn
-	2. modal message on geolocation fail
-	2. background on initial load
+	x. check fxnality for locate me btn
+	x. modal message on geolocation fail
+	x. background on initial load, icon only
+	4. beer info overflow
 */

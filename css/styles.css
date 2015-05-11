@@ -72,6 +72,8 @@ nav {
 .venueWindow {
 	max-width: 250px;
 	width: 250px;
+	height: inherit;
+	overflow: scroll;
 }
 
 .venueWindow hr {
@@ -82,6 +84,7 @@ nav {
 .beerCheckin {
 	max-width: 250px;
 	width: 250px;
+	padding-bottom: 10px;
 }
 
 .beerCheckin h6 {
@@ -98,10 +101,12 @@ nav {
 
 .beerImg {
 	background-color: yellow;
+	position: relative;
+	width: 65px;
 }
 
 .beerTag {
-	background-color: aliceblue;
+	margin-left: 65px;
 }
 
 .beerCheckin .brewery {
@@ -142,5 +147,6 @@ h4 {
 }
 
 #modalContent {
+	height: inherit;
 	overflow: scroll;
 }

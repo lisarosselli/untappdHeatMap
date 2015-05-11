@@ -47,7 +47,7 @@ var dataParse = {
 										 	'Rated: ' + data.response.beer.rating_score + ' / 5.0';		
 														
 		h4b.innerHTML = 	'<img style=\'height:40px;\' src=\'' + data.response.beer.brewery.brewery_label + '\'>&nbsp;' +
-											'<a href=\'' + data.response.beer.brewery.contact.url +'\'>' +
+											'<a href=\'' + data.response.beer.brewery.contact.url +'\' target=\'blank\'>' +
 											data.response.beer.brewery.brewery_name + '</a>';
 											
 		p.textContent = (data.response.beer.beer_description != "") ? 
