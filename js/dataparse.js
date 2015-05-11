@@ -40,10 +40,13 @@ var dataParse = {
 		div.appendChild(h4b);
 		div.appendChild(p);
 		
+		var ibus = (data.response.beer.beer_ibu === 0 || data.response.beer.beer_ibu === "") ?
+						'<i>unknown</i>' : data.response.beer.beer_ibu;
+		
 		h3.textContent 	= data.response.beer.beer_name;
 		h4a.innerHTML  	= data.response.beer.beer_style + '<br>' +
 										 	data.response.beer.beer_abv + '% ABV' + '<br>' +
-										 	data.response.beer.beer_ibu + ' IBU' + '<br>' +
+										 	ibus + ' IBU' + '<br>' +
 										 	'Rated: ' + data.response.beer.rating_score + ' / 5.0';		
 														
 		h4b.innerHTML = 	'<img style=\'height:40px;\' src=\'' + data.response.beer.brewery.brewery_label + '\'>&nbsp;' +
