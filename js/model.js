@@ -18,7 +18,7 @@ function Model() {
 		if (!_untappedApi) {
 			_untappedApi = value;
 		}
-	}
+	};
 	
 	return {
 		get untappdApi() {
@@ -56,7 +56,7 @@ function Model() {
 		},
 		get venueArray() {
 			if (!_venueArray) {
-				_venueArray = new Array();
+				_venueArray = [];
 			}
 			return _venueArray;
 		},
@@ -71,5 +71,5 @@ function Model() {
 				_googleMVCArray = value;
 			}
 		}
-	}
+	};
 }

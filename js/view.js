@@ -16,5 +16,5 @@ function View() {
 		mainUIView: _mainUIView,
 		googleMapsView: _googleMapsView,
 		init: init
-	}
+	};
 }

@@ -1,6 +1,6 @@
 var dataParse = {
 	getLatLngArray: function(data) {
-		var dataArray = new Array();
+		var dataArray = [];
 		var checkinItems = data.response.checkins.items;
 		
 		for (var i = 0; i < checkinItems.length; i++) {
@@ -14,7 +14,7 @@ var dataParse = {
 	},
 	
 	groupCheckinDataByVenue: function(data) {
-		var dataArray = new Array();
+		var dataArray = [];
 		dataArray = _.groupBy(data.response.checkins.items, function(checkinObj) {
 			return checkinObj.venue.venue_id;
 		});
@@ -50,7 +50,7 @@ var dataParse = {
 											'<a href=\'' + data.response.beer.brewery.contact.url +'\' target=\'blank\'>' +
 											data.response.beer.brewery.brewery_name + '</a>';
 											
-		p.textContent = (data.response.beer.beer_description != "") ? 
+		p.textContent = (data.response.beer.beer_description !== "") ? 
 											data.response.beer.beer_description : 
 											'No beer description (yet) for ' + data.response.beer.beer_name + '.';
 											
@@ -79,4 +79,4 @@ var dataParse = {
 		
 		return div;
 	}
-}
+};

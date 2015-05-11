@@ -34,7 +34,7 @@ function MainUIView(value) {
 
 		$(_menuCloseBtn).click(function(e) {
 			animateMenuOff();
-		})
+		});
 
 		$(_locateMeBtn).click(function() {
 			console.log('locate button clicked');
@@ -53,7 +53,7 @@ function MainUIView(value) {
 		
 		$(_infoCloseBtn).click(function() {
 			$(_infoModal).fadeOut();
-		})
+		});
 		
 	})();
 
@@ -64,10 +64,10 @@ function MainUIView(value) {
 			left: '0px'
 		}, 250, function() {
 			//console.log('animation on complete');
-		})
+		});
 
 		$(_menuOpenBtn).fadeOut();
-	}
+	};
 
 	var animateMenuOff = function() {
 		$(_mainContainer).animate({
@@ -77,29 +77,29 @@ function MainUIView(value) {
 		});
 
 		$(_menuOpenBtn).fadeIn();
-	}
+	};
 	
 	var toggleLocationLoadIcon = function() {
 		$(_loadIcon1).toggle();
-	}
+	};
 	
 	var toggleCheckinsLoadIcon = function() {
 		$(_loadIcon2).toggle();
-	}
+	};
 	
 	var showLocationLoader = function() {
 		var i = document.createElement('i');
 		i.className = 'fa fa-refresh fa-spin';
 		$(_menuOpenBtn).empty();
 		_menuOpenBtn.appendChild(i);
-	}
+	};
 	
 	var removeLocationLoader = function() {
 		var i = document.createElement('i');
 		i.className = 'fa fa-bars';
 		$(_menuOpenBtn).empty();
 		_menuOpenBtn.appendChild(i);
-	}
+	};
 	
 	var fadeInModal = function(div) {
 		if (div) {
@@ -107,11 +107,11 @@ function MainUIView(value) {
 			_modalContent.appendChild(div);
 			$(_infoModal).fadeIn();
 		}
-	}
+	};
 	
 	var fadeOutModal = function() {
 		$(_infoModal).fadeOut();
-	}
+	};
 	
 	return {
 		get titleBar() {
@@ -123,5 +123,5 @@ function MainUIView(value) {
 		removeLocationLoader: removeLocationLoader,
 		fadeInModal: fadeInModal,
 		fadeOutModal: fadeOutModal
-	}
+	};
 }
