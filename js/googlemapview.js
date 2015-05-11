@@ -18,6 +18,9 @@ function GoogleMapsView() {
 			var mapOptions = { zoom: 15 };
 			_map = new google.maps.Map(app.model.mapCanvasElement, mapOptions);
 			console.log('GoogleMapsView init '+_map);
+		} else {
+			var userMarker = _markers.shift();
+			userMarker.setMap(null);
 		}
 		return _map;
 	}
@@ -43,7 +46,7 @@ function GoogleMapsView() {
 			infoWindow = new google.maps.InfoWindow();
 			infoWindow.setContent('Here for the beer.');
 			infoWindow.open(_map, marker);
-			_markers.push(marker);
+			_markers.unshift(marker);
 
 			resetMapCenter();
 

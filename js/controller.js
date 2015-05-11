@@ -12,6 +12,7 @@ function Controller() {
 	 * acquireLocation
 	 */
 	var acquireLocation = function() {
+		app.view.mainUIView.showLocationLoader();
 		app.view.googleMapsView.init();
 		
 		if (navigator.geolocation) {
@@ -27,11 +28,13 @@ function Controller() {
 					app.view.googleMapsView.map.setCenter({ lat: app.model.user.location.lat, lng: app.model.user.location.lng});	
 					app.model.geoSuccess = true;			
 					
+					app.view.mainUIView.removeLocationLoader();
 					displayUserMarker();
 				}, 
 				function(error) {
 					console.log(error);
-					//alert(error.message + '\nThe point of this app is totally moot if we cannot locate you.');
+					app.view.mainUIView.removeLocationLoader();
+					//TODO: modal message of failure
 					app.model.geoSuccess = false;	
 					return error;
 				}, 
@@ -43,6 +46,8 @@ function Controller() {
 		} else {
 			console.log('No browser support for geolocation.');
 			alert('No browser support for geolocation.');
+			app.view.mainUIView.removeLocationLoader();
+			//TODO: modal message of failure
 			app.model.geoSuccess = false;	
 		}
 	}
@@ -68,7 +73,6 @@ function Controller() {
 			console.warn('getLocalPubData > using Chicago Loop default location');
 			ajaxUrl = 'https://api.untappd.com/v4/thepub/local?access_token=A3DF816D42AA28B509413D4903139E8650A2B5C4&lat=41.8854785&lng=-87.6402523';
 		} else {
-			// hit the API for local checkins (public users)
 			console.debug('getLocalPubData > using Google generated lat/lng');
 			ajaxUrl = app.model.untappdApi.getPubsUri(app.model.user.location.lat, app.model.user.location.lng);
 		}

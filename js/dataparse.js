@@ -55,5 +55,31 @@ var dataParse = {
 											'No beer description (yet) for ' + data.response.beer.beer_name + '.';
 											
 		return div;
+	},
+	
+	createGeoLocDeniedMessage: function() {
+		var div 	= document.createElement('div');
+		var h3 		= document.createElement('h3');
+		var p 		= document.createElement('p');
+		
+		div.appendChild(h3);
+		div.appendChild(p);
+		h3.textContent = 'Your browser is not allowing Geolocation right now.';
+		p.textContent = 'Sadness ensues...';
+		
+		return div;
+	},
+	
+	createGeoLocFailMessage: function() {
+		var div 	= document.createElement('div');
+		var h3 		= document.createElement('h3');
+		var p 		= document.createElement('p');
+		
+		div.appendChild(h3);
+		div.appendChild(p);
+		h3.textContent = 'Geolocation failed somehow.';
+		p.textContent = 'I blame Google.';
+		
+		return div;
 	}
 }

@@ -86,6 +86,20 @@ function MainUIView(value) {
 		$(_loadIcon2).toggle();
 	}
 	
+	var showLocationLoader = function() {
+		var i = document.createElement('i');
+		i.className = 'fa fa-refresh fa-spin';
+		$(_menuOpenBtn).empty();
+		_menuOpenBtn.appendChild(i);
+	}
+	
+	var removeLocationLoader = function() {
+		var i = document.createElement('i');
+		i.className = 'fa fa-bars';
+		$(_menuOpenBtn).empty();
+		_menuOpenBtn.appendChild(i);
+	}
+	
 	var fadeInModal = function(data) {
 		if (data != undefined && data != null) {
 			$(_modalContent).empty();
@@ -106,6 +120,8 @@ function MainUIView(value) {
 		},
 		toggleLocationLoadIcon: toggleLocationLoadIcon,
 		toggleCheckinsLoadIcon: toggleCheckinsLoadIcon,
+		showLocationLoader: showLocationLoader,
+		removeLocationLoader: removeLocationLoader,
 		fadeInModal: fadeInModal,
 		fadeOutModal: fadeOutModal
 	}

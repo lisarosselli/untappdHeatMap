@@ -40,3 +40,10 @@ window.onload = function() {
 		app.controller.acquireLocation();
 	}
 };
+
+/*
+	TODO:
+	1. check fxnality for locate me btn
+	2. modal message on geolocation fail
+	2. background on initial load
+*/
