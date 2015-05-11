@@ -20,14 +20,22 @@ module.exports = function(grunt) {
 				tasks: ['csslint']
 			}
 		},
+		concat: {
+		    options: {
+		      separator: ';',
+		    },
+		    dist: {
+		      src: ['js/*.js'],
+		      dest: 'dist/heatmap.js',
+		    },
+		  },
 		uglify: {
 		    my_target: {
 					options: {
 						sourceMap: true
 					},
 		      files: {
-		        'js/output.min.js': ['js/controller.js', 'js/dataparse.js', 'js/googlemapview.js', 'js/main.js', 
-																'js/mainuiview.js', 'js/model.js', 'js/untappd.js', 'js/user.js', 'js/view.js']
+		        'dist/heatmap.min.js': ['dist/heatmap.js']
 		      }
 		    }
 		  },
@@ -38,7 +46,7 @@ module.exports = function(grunt) {
 			  },
 			  target: {
 			    files: {
-			      'css/output.css': ['css/styles.css']
+			      'dist/output.css': ['css/styles.css']
 			    }
 			  }
 			}
@@ -47,16 +55,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 	grunt.registerTask('test', ['jshint']);
-	grunt.registerTask('build', ['uglify', 'cssmin']);
-
-	grunt.registerTask('default', [
-		'jshint',
-		'csslint',
-		'uglify',
-		'cssmin'
-	]);
+	grunt.registerTask('build', ['csslint', 'jshint', 'concat', 'uglify', 'cssmin']);
 };
