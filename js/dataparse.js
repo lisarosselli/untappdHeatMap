@@ -70,15 +70,12 @@ var dataParse = {
 		return div;
 	},
 	
-	createGeoLocFailMessage: function() {
+	createGeoLocFailMessage: function(errorMessage) {
 		var div 	= document.createElement('div');
 		var h3 		= document.createElement('h3');
-		var p 		= document.createElement('p');
 		
 		div.appendChild(h3);
-		div.appendChild(p);
-		h3.textContent = 'Geolocation failed somehow.';
-		p.textContent = 'I blame Google.';
+		h3.textContent = errorMessage.message;
 		
 		return div;
 	}

@@ -34,7 +34,8 @@ function Controller() {
 				function(error) {
 					console.log(error);
 					app.view.mainUIView.removeLocationLoader();
-					//TODO: modal message of failure
+					var div = dataParse.createGeoLocFailMessage(error);
+					app.view.mainUIView.fadeInModal(div);
 					app.model.geoSuccess = false;	
 					return error;
 				}, 
@@ -45,9 +46,9 @@ function Controller() {
 				});
 		} else {
 			console.log('No browser support for geolocation.');
-			alert('No browser support for geolocation.');
 			app.view.mainUIView.removeLocationLoader();
-			//TODO: modal message of failure
+			var div = dataParse.createGeoLocDeniedMessage();
+			app.view.mainUIView.fadeInModal(div);
 			app.model.geoSuccess = false;	
 		}
 	}
@@ -115,7 +116,8 @@ function Controller() {
 		})
 			.done(function(data) {
 				console.log('beer info ajax successful');
-				app.view.mainUIView.fadeInModal(data);
+				var div = dataParse.createBeerInfoDisplay(data);
+				app.view.mainUIView.fadeInModal(div);
 			})
 			.fail(function(data) {
 				console.log('beer info ajax fail');

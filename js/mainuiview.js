@@ -100,14 +100,12 @@ function MainUIView(value) {
 		_menuOpenBtn.appendChild(i);
 	}
 	
-	var fadeInModal = function(data) {
-		if (data != undefined && data != null) {
+	var fadeInModal = function(div) {
+		if (div) {
 			$(_modalContent).empty();
-			var divHtml = dataParse.createBeerInfoDisplay(data);
-			_modalContent.appendChild(divHtml);
+			_modalContent.appendChild(div);
+			$(_infoModal).fadeIn();
 		}
-		
-		$(_infoModal).fadeIn();
 	}
 	
 	var fadeOutModal = function() {
