@@ -104,8 +104,8 @@ function MainUIView(value) {
 		get titleBar() {
 			return _titleBar;
 		},
-		toggleLocationLoadIcon,
-		toggleCheckinsLoadIcon,
+		toggleLocationLoadIcon: toggleLocationLoadIcon,
+		toggleCheckinsLoadIcon: toggleCheckinsLoadIcon,
 		fadeInModal: fadeInModal,
 		fadeOutModal: fadeOutModal
 	}
