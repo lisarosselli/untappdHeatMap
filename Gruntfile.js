@@ -21,6 +21,9 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 		    my_target: {
+					options: {
+						sourceMap: true
+					},
 		      files: {
 		        'js/output.min.js': ['js/controller.js', 'js/dataparse.js', 'js/googlemapview.js', 'js/view.js',
 												'js/main.js', 'js/mainuiview.js', 'js/model.js', 'js/untappd.js', 'js/user.js']
