@@ -39,11 +39,12 @@ function MainUIView(value) {
 		$(_locateMeBtn).click(function() {
 			console.log('locate button clicked');
 			app.controller.acquireLocation();
+			animateMenuOff();
 		});
 
 		$(_showActivityBtn).click(function() {
 			app.controller.getLocalPubData(app.controller.displayHeatMap);
-			//animateMenuOff();
+			animateMenuOff();
 		});
 		
 		$(_loadIcon1).toggle();

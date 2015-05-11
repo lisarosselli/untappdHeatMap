@@ -40,11 +40,3 @@ window.onload = function() {
 		app.controller.acquireLocation();
 	}
 };
-
-/*
-	TODO:
-	x. check fxnality for locate me btn
-	x. modal message on geolocation fail
-	x. background on initial load, icon only
-	4. beer info overflow
-*/
