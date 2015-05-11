@@ -20,10 +20,11 @@
   },
   "homepage": "https://github.com/lisarosselli/untappdHeatMap",
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-csslint": "^0.4.0",
-    "grunt-contrib-jshint": "^0.11.1",
-    "grunt-contrib-uglify": "^0.9.1",
-    "grunt-contrib-watch": "^0.6.1"
+		"grunt": "^0.4.5",
+		"grunt-contrib-csslint": "^0.4.0",
+		"grunt-contrib-cssmin": "^0.12.3",
+		"grunt-contrib-jshint": "^0.11.1",
+		"grunt-contrib-uglify": "^0.9.1",
+		"grunt-contrib-watch": "^0.6.1"
   }
 }
