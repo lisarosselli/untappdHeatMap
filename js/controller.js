@@ -51,18 +51,18 @@ function Controller() {
 			app.view.mainUIView.fadeInModal(div);
 			app.model.geoSuccess = false;	
 		}
-	}
+	};
 	
 	/*
 	 * displayUserMarker
 	 */
 	var displayUserMarker = function() {
 		app.view.googleMapsView.markUserLocation(app.model.user.getGoogleLatLng(), 'I am here.');
-	}
+	};
 
 	var resetMapCenter = function() {
 		app.view.googleMapsView.resetMapCenter();
-	}
+	};
 	
 	/*
 	 * getLocalPubData
@@ -97,14 +97,14 @@ function Controller() {
 				console.log("ajax failed");
 				app.view.mainUIView.toggleCheckinsLoadIcon();
 			});
-	}
+	};
 
 	var displayHeatMap = function() {
 		app.view.googleMapsView.displayHeatMap();
-		var venueCheckinArray = new Array();
+		var venueCheckinArray = [];
 		venueCheckinArray = dataParse.groupCheckinDataByVenue(app.model.pubsResponse);
 		app.view.googleMapsView.displayCheckinsByVenue(venueCheckinArray);
-	}
+	};
 
 	var getBeerInfo = function(beerId) {
 		var ajaxUrl = app.model.untappdApi.getBeerInfoUri(beerId);
@@ -121,8 +121,8 @@ function Controller() {
 			})
 			.fail(function(data) {
 				console.log('beer info ajax fail');
-			})
-	}
+			});
+	};
 
 	return {
 		acquireLocation: acquireLocation,
@@ -130,6 +130,5 @@ function Controller() {
 		getLocalPubData: getLocalPubData,
 		displayHeatMap: displayHeatMap,
 		getBeerInfo: getBeerInfo
-	}
-	
+	};
 }

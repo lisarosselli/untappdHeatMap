@@ -5,6 +5,8 @@
  * 
  */
 
+/* jshint loopfunc:true */
+
 function GoogleMapsView() {
 	console.log('GoogleMapsView');
 	
@@ -23,7 +25,7 @@ function GoogleMapsView() {
 			userMarker.setMap(null);
 		}
 		return _map;
-	}
+	};
 	
 	/*
 	 * This method acts to intake a marker and store
@@ -53,14 +55,14 @@ function GoogleMapsView() {
 		} else {
 			throw(new Error('Missing a parameter.'));
 		}
-	}
+	};
 
 	var resetMapCenter = function() {
 		if (_map && app.model.user.getGoogleLatLng()) {
 			_map.setCenter(app.model.user.getGoogleLatLng());
 			console.log('reset center');
 		}
-	}
+	};
 
 	var displayHeatMap = function() {
 		if (app.model.googleMVCArray) {
@@ -71,13 +73,13 @@ function GoogleMapsView() {
 			  });
 			_heatmap.setMap(_map);
 		}
-	}
+	};
 
 	var removeHeatMap = function() {
 		if (_heatmap) {
 			_heatmap.setMap(null);
 		}
-	}
+	};
 	
 	/*
 	 * @param venueData array
@@ -172,7 +174,7 @@ function GoogleMapsView() {
 		
 		setupInfoWindowClose(_markers, _infoWindows);
 		setupMarkerClickEvents(_markers, _infoWindows);
-	}
+	};
 	
 	var clearVenueMarkers = function() {
 		_.each(_markers, function(element, index, list) {
@@ -182,7 +184,7 @@ function GoogleMapsView() {
 		});
 		_markers = [];
 		_infoWindows = [];
-	}
+	};
 	
 	/*
 	 * @param array of google.maps.Marker objects
@@ -198,7 +200,7 @@ function GoogleMapsView() {
 				marker.isOpen = false;
 			});
 		});
-	}
+	};
 	
 	/*
 	 * @param array of google.maps.Marker objects
@@ -217,13 +219,13 @@ function GoogleMapsView() {
 					
 					if (infoWindow) {
 						infoWindow.open(_map, this);
-					};
+					}
 					
 					this.isOpen = true;
 				} 
 			});
 		});
-	}
+	};
 	
 	return {
 		init: init,
@@ -241,5 +243,5 @@ function GoogleMapsView() {
 		displayHeatMap: displayHeatMap,
 		removeHeatMap: removeHeatMap,
 		displayCheckinsByVenue: displayCheckinsByVenue
-	}
+	};
 }
