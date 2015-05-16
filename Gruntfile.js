@@ -1,6 +1,10 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		jshint: {
+			options: {
+				jshintrc: '.jshintrc',
+				reporter: require('jshint-stylish')
+			},
 			all: ['js/controller.js', 'js/dataparse.js', 'js/googlemapview.js', 'js/main.js', 
 						'js/mainuiview.js', 'js/model.js', 'js/untappd.js', 'js/user.js', 'js/view.js']
 		},
@@ -59,6 +63,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
+	// see .jshintrc for options used in test (vim .jshintrc)
 	grunt.registerTask('test', ['jshint']);
-	grunt.registerTask('build', ['csslint', 'jshint', 'concat', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'cssmin']);
 };

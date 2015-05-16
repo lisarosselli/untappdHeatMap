@@ -6,6 +6,8 @@
  * 
  */
 
+ 'use strict';
+
 /*
  * app object
  */

@@ -5,6 +5,8 @@
  * 
  */
 
+'use strict';
+
 function Controller() {
 	
 	
@@ -30,6 +32,7 @@ function Controller() {
 					
 					app.view.mainUIView.removeLocationLoader();
 					displayUserMarker();
+					resetMapCenter();
 				}, 
 				function(error) {
 					console.log(error);
@@ -95,6 +98,7 @@ function Controller() {
 			})
 			.fail(function(data) {
 				console.log("ajax failed");
+				console.log(data);
 				app.view.mainUIView.toggleCheckinsLoadIcon();
 			});
 	};
@@ -121,6 +125,7 @@ function Controller() {
 			})
 			.fail(function(data) {
 				console.log('beer info ajax fail');
+				console.log(data);
 			});
 	};
 

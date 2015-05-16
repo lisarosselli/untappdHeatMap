@@ -4,6 +4,8 @@
  * @author L.Rosselli
  */
 
+ 'use strict';
+
 function User() {
 	var _location = {
 		lat: null,
