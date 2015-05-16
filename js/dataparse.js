@@ -1,3 +1,5 @@
+'use strict';
+
 var dataParse = {
 	getLatLngArray: function(data) {
 		var dataArray = [];

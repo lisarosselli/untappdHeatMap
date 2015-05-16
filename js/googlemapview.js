@@ -5,6 +5,8 @@
  * 
  */
 
+ 'use strict';
+
 /* jshint loopfunc:true */
 
 function GoogleMapsView() {
@@ -87,7 +89,7 @@ function GoogleMapsView() {
 	var displayCheckinsByVenue = function(data) {
 		clearVenueMarkers();
 		
-		_.each(data, function(v, k, l) {
+		_.each(data, function(v, k) {
 			var marker;
 			var infoWindow;
 			var containerDiv = document.createElement('div');
@@ -177,7 +179,7 @@ function GoogleMapsView() {
 	};
 	
 	var clearVenueMarkers = function() {
-		_.each(_markers, function(element, index, list) {
+		_.each(_markers, function(element, index) {
 			if (index > 0) {
 				element.setMap(null);
 			}
@@ -191,11 +193,11 @@ function GoogleMapsView() {
 	 * @param array of google.maps.InfoWindow objects
 	 */
 	var setupInfoWindowClose = function(markerArray, infoWindowArray) {
-		_.each(infoWindowArray, function(element, index, list) {
+		_.each(infoWindowArray, function(element) {
 			element.addListener('closeclick', function() {
 				var t = this;
 				var marker = _.find(markerArray, function(m) {
-					return m.id == t.id;
+					return m.id === t.id;
 				});
 				marker.isOpen = false;
 			});
@@ -207,14 +209,14 @@ function GoogleMapsView() {
 	 * @param array of google.maps.InfoWindow objects
 	 */
 	var setupMarkerClickEvents = function(markerArray, infoWindowArray) {
-		_.each(markerArray, function(element, index, list) {
+		_.each(markerArray, function(element) {
 			element.addListener('click', function() {
 				// find this marker's matching infoWindow
 				// and display it
 				if (!this.isOpen) {
 					var t = this;
 					var infoWindow = _.find(infoWindowArray, function(w) {
-						return w.id == t.id;
+						return w.id === t.id;
 					});
 					
 					if (infoWindow) {

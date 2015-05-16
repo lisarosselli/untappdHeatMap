@@ -5,6 +5,8 @@
  * 
  */
 
+'use strict';
+
 function Controller() {
 	
 	
@@ -30,6 +32,7 @@ function Controller() {
 					
 					app.view.mainUIView.removeLocationLoader();
 					displayUserMarker();
+					resetMapCenter();
 				}, 
 				function(error) {
 					console.log(error);
@@ -95,6 +98,7 @@ function Controller() {
 			})
 			.fail(function(data) {
 				console.log("ajax failed");
+				console.log(data);
 				app.view.mainUIView.toggleCheckinsLoadIcon();
 			});
 	};
@@ -121,6 +125,7 @@ function Controller() {
 			})
 			.fail(function(data) {
 				console.log('beer info ajax fail');
+				console.log(data);
 			});
 	};
 
@@ -131,7 +136,9 @@ function Controller() {
 		displayHeatMap: displayHeatMap,
 		getBeerInfo: getBeerInfo
 	};
-};var dataParse = {
+};'use strict';
+
+var dataParse = {
 	getLatLngArray: function(data) {
 		var dataArray = [];
 		var checkinItems = data.response.checkins.items;
@@ -222,6 +229,8 @@ function Controller() {
  * 
  */
 
+ 'use strict';
+
 /* jshint loopfunc:true */
 
 function GoogleMapsView() {
@@ -304,7 +313,7 @@ function GoogleMapsView() {
 	var displayCheckinsByVenue = function(data) {
 		clearVenueMarkers();
 		
-		_.each(data, function(v, k, l) {
+		_.each(data, function(v, k) {
 			var marker;
 			var infoWindow;
 			var containerDiv = document.createElement('div');
@@ -394,7 +403,7 @@ function GoogleMapsView() {
 	};
 	
 	var clearVenueMarkers = function() {
-		_.each(_markers, function(element, index, list) {
+		_.each(_markers, function(element, index) {
 			if (index > 0) {
 				element.setMap(null);
 			}
@@ -408,11 +417,11 @@ function GoogleMapsView() {
 	 * @param array of google.maps.InfoWindow objects
 	 */
 	var setupInfoWindowClose = function(markerArray, infoWindowArray) {
-		_.each(infoWindowArray, function(element, index, list) {
+		_.each(infoWindowArray, function(element) {
 			element.addListener('closeclick', function() {
 				var t = this;
 				var marker = _.find(markerArray, function(m) {
-					return m.id == t.id;
+					return m.id === t.id;
 				});
 				marker.isOpen = false;
 			});
@@ -424,14 +433,14 @@ function GoogleMapsView() {
 	 * @param array of google.maps.InfoWindow objects
 	 */
 	var setupMarkerClickEvents = function(markerArray, infoWindowArray) {
-		_.each(markerArray, function(element, index, list) {
+		_.each(markerArray, function(element) {
 			element.addListener('click', function() {
 				// find this marker's matching infoWindow
 				// and display it
 				if (!this.isOpen) {
 					var t = this;
 					var infoWindow = _.find(infoWindowArray, function(w) {
-						return w.id == t.id;
+						return w.id === t.id;
 					});
 					
 					if (infoWindow) {
@@ -468,6 +477,8 @@ function GoogleMapsView() {
  * @author L.Rosselli
  * 
  */
+
+ 'use strict';
 
 /*
  * app object
@@ -509,13 +520,21 @@ window.onload = function() {
  * 
  */
 
+'use strict';
+
 function MainUIView(value) {
 	var _mainContainer = value;
 	var _titleBar;
 	var _menu;
 	var _menuCloseBtn;
+	var _menuOpenBtn;
 	var _locateMeBtn;
 	var _showActivityBtn;
+	var _loadIcon1;
+	var _loadIcon2;
+	var _infoModal;
+	var _infoCloseBtn;
+	var _modalContent;
 	
 	(function init() {
 		console.log('MainUIView constructor');
@@ -532,11 +551,11 @@ function MainUIView(value) {
 		_infoCloseBtn = document.getElementById('infoCloseBtn');
 		_modalContent = document.getElementById('modalContent');
 		
-		$(_menuOpenBtn).click(function(e) {
+		$(_menuOpenBtn).click(function() {
 			animateMenuOn();
 		});
 
-		$(_menuCloseBtn).click(function(e) {
+		$(_menuCloseBtn).click(function() {
 			animateMenuOff();
 		});
 
@@ -635,6 +654,8 @@ function MainUIView(value) {
  * 
  */
 
+'use strict';
+
 function Model() {
 	var _untappdApi;
 	var _user = new User();
@@ -643,12 +664,6 @@ function Model() {
 	var _heatMapData;
 	var _venueArray;
 	var _googleMVCArray;
-	
-	var setUntappdApi = function(value) {
-		if (!_untappedApi) {
-			_untappedApi = value;
-		}
-	};
 	
 	return {
 		get untappdApi() {
@@ -668,7 +683,7 @@ function Model() {
 			return _geoSuccess;
 		},
 		set geoSuccess(value) {
-			if (typeof value == 'boolean') {
+			if (typeof value === 'boolean') {
 				_geoSuccess = value;
 			}
 		},
@@ -709,6 +724,8 @@ function Model() {
  * 
  */
 
+'use strict';
+
 /* 
  	GoogleMaps API key:
 	https://console.developers.google.com/project/onyx-syntax-92016/apiui/credential#
@@ -724,8 +741,8 @@ function Model() {
 function UntappdApi() {
 	var baseUrl = 'https://api.untappd.com/v4/';
 	var accessToken = 'A3DF816D42AA28B509413D4903139E8650A2B5C4';
-	var clientId = '5F0863FC89478BD8806475EF88AADED10917AFAC';
-	var clientSecret = 'B28EA9A1FC17D06C412ADA070E1FABADC83E7EC6';
+	//var clientId = '5F0863FC89478BD8806475EF88AADED10917AFAC';
+	//var clientSecret = 'B28EA9A1FC17D06C412ADA070E1FABADC83E7EC6';
 	var localCheckin = 'thepub/local?';
 	var beerInfo = 'beer/info/';
 	
@@ -753,6 +770,8 @@ function UntappdApi() {
  * @author L.Rosselli
  */
 
+ 'use strict';
+
 function User() {
 	var _location = {
 		lat: null,
@@ -775,6 +794,8 @@ function User() {
  * @author L.Rosselli
  * 
  */
+
+'use strict';
 
 function View() {
 	var _mainContainer = document.getElementById('mainContainer');

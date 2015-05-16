@@ -5,6 +5,8 @@
  * 
  */
 
+'use strict';
+
 function View() {
 	var _mainContainer = document.getElementById('mainContainer');
 	var _googleMapsView = new GoogleMapsView();

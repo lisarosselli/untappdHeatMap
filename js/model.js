@@ -5,6 +5,8 @@
  * 
  */
 
+'use strict';
+
 function Model() {
 	var _untappdApi;
 	var _user = new User();
@@ -13,12 +15,6 @@ function Model() {
 	var _heatMapData;
 	var _venueArray;
 	var _googleMVCArray;
-	
-	var setUntappdApi = function(value) {
-		if (!_untappedApi) {
-			_untappedApi = value;
-		}
-	};
 	
 	return {
 		get untappdApi() {
@@ -38,7 +34,7 @@ function Model() {
 			return _geoSuccess;
 		},
 		set geoSuccess(value) {
-			if (typeof value == 'boolean') {
+			if (typeof value === 'boolean') {
 				_geoSuccess = value;
 			}
 		},

@@ -5,13 +5,21 @@
  * 
  */
 
+'use strict';
+
 function MainUIView(value) {
 	var _mainContainer = value;
 	var _titleBar;
 	var _menu;
 	var _menuCloseBtn;
+	var _menuOpenBtn;
 	var _locateMeBtn;
 	var _showActivityBtn;
+	var _loadIcon1;
+	var _loadIcon2;
+	var _infoModal;
+	var _infoCloseBtn;
+	var _modalContent;
 	
 	(function init() {
 		console.log('MainUIView constructor');
@@ -28,11 +36,11 @@ function MainUIView(value) {
 		_infoCloseBtn = document.getElementById('infoCloseBtn');
 		_modalContent = document.getElementById('modalContent');
 		
-		$(_menuOpenBtn).click(function(e) {
+		$(_menuOpenBtn).click(function() {
 			animateMenuOn();
 		});
 
-		$(_menuCloseBtn).click(function(e) {
+		$(_menuCloseBtn).click(function() {
 			animateMenuOff();
 		});
 
